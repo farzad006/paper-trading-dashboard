@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="300">
+    <title>Paper Trading Dashboard - Live</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { color: #2c3e50; margin-bottom: 10px; font-size: 32px; }
+        .subtitle { color: #7f8c8d; margin-bottom: 20px; font-size: 16px; }
+        
+        .controls { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; gap: 20px; align-items: center; }
+        .controls select { padding: 10px 15px; border: 2px solid #3498db; border-radius: 6px; font-size: 14px; cursor: pointer; }
+        .controls button { padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .controls button:hover { background: #2980b9; }
+        .auto-refresh { color: #27ae60; font-size: 13px; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .stat-card h3 { color: #7f8c8d; font-size: 14px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
+        .stat-card .value { font-size: 36px; font-weight: bold; margin-bottom: 5px; }
+        .stat-card .subtext { color: #95a5a6; font-size: 13px; }
+        .positive { color: #27ae60; }
+        .negative { color: #e74c3c; }
+        .neutral { color: #3498db; }
+        
+        .section { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .section h2 { color: #2c3e50; margin-bottom: 20px; font-size: 24px; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background: #34495e; color: white; padding: 12px; text-align: left; font-weight: 600; font-size: 13px; }
+        td { padding: 12px; border-bottom: 1px solid #ecf0f1; font-size: 14px; }
+        tr:hover { background: #f8f9fa; }
+        
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; }
+        .badge-success { background: #27ae60; color: white; }
+        .badge-danger { background: #e74c3c; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Paper Trading Dashboard</h1>
+        <p class="subtitle">Live Performance Analysis | Last Updated: 2026-05-21 15:55:14</p>
+        
+        <div class="controls">
+            <label><strong>View:</strong></label>
+            <select id="viewMode" onchange="changeView()">
+                <option value="all">All Time</option>
+                <option value="month">Month Wise</option>
+            </select>
+            <select id="monthSelect" style="display:none;" onchange="filterByMonth()">
+                <option value="">Select Month</option>
+                <option value="2026-05">May 2026</option><option value="2026-04">April 2026</option>
+            </select>
+            <button onclick="location.reload()">🔄 Refresh Now</button>
+            <span class="auto-refresh">⏱️ Auto-refresh every 5 minutes</span>
+        </div>
+        
+        <div id="statsContainer">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Trades</h3>
+                    <div class="value neutral" id="totalTrades">70</div>
+                    <div class="subtext">Executed trades</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Net P&L</h3>
+                    <div class="value positive" id="netPnl">₹17,917.50</div>
+                    <div class="subtext" id="netPoints">+238.9 points</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Win Rate</h3>
+                    <div class="value neutral" id="winRate">35.71%</div>
+                    <div class="subtext" id="winLoss">25 wins / 45 losses</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Avg Win</h3>
+                    <div class="value positive" id="avgWin">₹4,330.50</div>
+                    <div class="subtext">Per winning trade</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Avg Loss</h3>
+                    <div class="value negative" id="avgLoss">₹-2,007.67</div>
+                    <div class="subtext">Per losing trade</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Profit Factor</h3>
+                    <div class="value positive" id="profitFactor">1.20</div>
+                    <div class="subtext">Gross profit / Gross loss</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Ignored Trades</h3>
+                    <div class="value neutral" id="ignoredTrades">77</div>
+                    <div class="subtext">Due to daily limits</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Best Trade</h3>
+                    <div class="value positive" id="bestTrade">₹5,700.00</div>
+                    <div class="subtext">2026-05-06</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="tableTitle">📅 Daily Performance Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Trades</th>
+                        <th>Wins</th>
+                        <th>Losses</th>
+                        <th>Win Rate</th>
+                        <th>Daily P&L</th>
+                        <th>Points</th>
+                        <th>Ignored</th>
+                    </tr>
+                </thead>
+                <tbody id="performanceTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        const tradesData = {"daily": {"2026-04-16": {"trades": 2, "wins": 1, "losses": 1, "pnl": 2752.5, "points": 36.7, "ignored": 0}, "2026-04-17": {"trades": 1, "wins": 0, "losses": 1, "pnl": -2100.0, "points": -28.0, "ignored": 0}, "2026-04-24": {"trades": 3, "wins": 2, "losses": 1, "pnl": 4815.0, "points": 64.2, "ignored": 0}, "2026-04-29": {"trades": 3, "wins": 1, "losses": 2, "pnl": 2782.5, "points": 37.1, "ignored": 0}, "2026-04-30": {"trades": 6, "wins": 1, "losses": 5, "pnl": -7485.0, "points": -99.8, "ignored": 0}, "2026-05-04": {"trades": 3, "wins": 0, "losses": 3, "pnl": -6135.0, "points": -81.8, "ignored": 7}, "2026-05-05": {"trades": 3, "wins": 1, "losses": 2, "pnl": 1372.5, "points": 18.3, "ignored": 2}, "2026-05-06": {"trades": 6, "wins": 3, "losses": 3, "pnl": 4462.5, "points": 59.5, "ignored": 3}, "2026-05-07": {"trades": 3, "wins": 0, "losses": 3, "pnl": -6720.0, "points": -89.6, "ignored": 9}, "2026-05-08": {"trades": 5, "wins": 3, "losses": 2, "pnl": 7597.5, "points": 101.3, "ignored": 0}, "2026-05-11": {"trades": 4, "wins": 2, "losses": 2, "pnl": 5752.5, "points": 76.7, "ignored": 0}, "2026-05-12": {"trades": 5, "wins": 4, "losses": 1, "pnl": 16410.0, "points": 218.8, "ignored": 0}, "2026-05-13": {"trades": 7, "wins": 4, "losses": 3, "pnl": 10312.5, "points": 137.5, "ignored": 0}, "2026-05-14": {"trades": 4, "wins": 1, "losses": 3, "pnl": 337.5, "points": 4.5, "ignored": 13}, "2026-05-15": {"trades": 3, "wins": 0, "losses": 3, "pnl": -5610.0, "points": -74.8, "ignored": 17}, "2026-05-18": {"trades": 3, "wins": 0, "losses": 3, "pnl": -6510.0, "points": -86.8, "ignored": 8}, "2026-05-19": {"trades": 3, "wins": 0, "losses": 3, "pnl": -6412.5, "points": -85.5, "ignored": 9}, "2026-05-20": {"trades": 3, "wins": 0, "losses": 3, "pnl": -6412.5, "points": -85.5, "ignored": 9}, "2026-05-21": {"trades": 3, "wins": 2, "losses": 1, "pnl": 8707.5, "points": 116.1, "ignored": 0}}, "monthly": {"2026-04": {"trades": 15, "wins": 5, "losses": 10, "pnl": 765.0, "points": 10.2, "ignored": 0, "win_rate": 33.33333333333333}, "2026-05": {"trades": 55, "wins": 20, "losses": 35, "pnl": 17152.5, "points": 228.7, "ignored": 77, "win_rate": 36.36363636363637}}};
+        let currentView = 'all';
+        let selectedMonth = '';
+        
+        function changeView() {
+            currentView = document.getElementById('viewMode').value;
+            const monthSelect = document.getElementById('monthSelect');
+            
+            if (currentView === 'month') {
+                monthSelect.style.display = 'inline-block';
+                if (monthSelect.value) {
+                    filterByMonth();
+                } else {
+                    showMonthlyView();
+                }
+            } else {
+                monthSelect.style.display = 'none';
+                showAllTimeView();
+            }
+        }
+        
+        function showAllTimeView() {
+            document.getElementById('tableTitle').textContent = '📅 Daily Performance Breakdown';
+            const tbody = document.getElementById('performanceTable');
+            tbody.innerHTML = '';
+            
+            const sortedDates = Object.keys(tradesData.daily).sort();
+            sortedDates.forEach(date => {
+                const day = tradesData.daily[date];
+                const winRate = day.trades > 0 ? (day.wins / day.trades * 100).toFixed(1) : '0.0';
+                const row = `
+                    <tr>
+                        <td>${date}</td>
+                        <td>${day.trades}</td>
+                        <td>${day.wins}</td>
+                        <td>${day.losses}</td>
+                        <td>${winRate}%</td>
+                        <td class="${day.pnl > 0 ? 'positive' : 'negative'}">₹${day.pnl.toFixed(2)}</td>
+                        <td>${day.points > 0 ? '+' : ''}${day.points.toFixed(1)}</td>
+                        <td>${day.ignored}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+        
+        function showMonthlyView() {
+            document.getElementById('tableTitle').textContent = '📅 Monthly Performance Summary';
+            const tbody = document.getElementById('performanceTable');
+            tbody.innerHTML = '';
+            
+            const sortedMonths = Object.keys(tradesData.monthly).sort().reverse();
+            sortedMonths.forEach(month => {
+                const data = tradesData.monthly[month];
+                const monthName = new Date(month + '-01').toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+                const row = `
+                    <tr style="cursor:pointer;" onclick="selectMonth('${month}')">
+                        <td><strong>${monthName}</strong></td>
+                        <td>${data.trades}</td>
+                        <td>${data.wins}</td>
+                        <td>${data.losses}</td>
+                        <td>${data.win_rate.toFixed(1)}%</td>
+                        <td class="${data.pnl > 0 ? 'positive' : 'negative'}">₹${data.pnl.toFixed(2)}</td>
+                        <td>${data.points > 0 ? '+' : ''}${data.points.toFixed(1)}</td>
+                        <td>${data.ignored}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+        
+        function selectMonth(month) {
+            document.getElementById('monthSelect').value = month;
+            filterByMonth();
+        }
+        
+        function filterByMonth() {
+            selectedMonth = document.getElementById('monthSelect').value;
+            if (!selectedMonth) {
+                showMonthlyView();
+                return;
+            }
+            
+            const monthData = tradesData.monthly[selectedMonth];
+            const monthName = new Date(selectedMonth + '-01').toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+            
+            // Update stats
+            document.getElementById('totalTrades').textContent = monthData.trades;
+            document.getElementById('netPnl').textContent = '₹' + monthData.pnl.toFixed(2);
+            document.getElementById('netPnl').className = 'value ' + (monthData.pnl > 0 ? 'positive' : 'negative');
+            document.getElementById('netPoints').textContent = (monthData.points > 0 ? '+' : '') + monthData.points.toFixed(1) + ' points';
+            document.getElementById('winRate').textContent = monthData.win_rate.toFixed(2) + '%';
+            document.getElementById('winLoss').textContent = monthData.wins + ' wins / ' + monthData.losses + ' losses';
+            document.getElementById('ignoredTrades').textContent = monthData.ignored;
+            
+            // Show daily breakdown for selected month
+            document.getElementById('tableTitle').textContent = `📅 Daily Breakdown - ${monthName}`;
+            const tbody = document.getElementById('performanceTable');
+            tbody.innerHTML = '';
+            
+            const daysInMonth = Object.keys(tradesData.daily).filter(date => date.startsWith(selectedMonth)).sort();
+            daysInMonth.forEach(date => {
+                const day = tradesData.daily[date];
+                const winRate = day.trades > 0 ? (day.wins / day.trades * 100).toFixed(1) : '0.0';
+                const row = `
+                    <tr>
+                        <td>${date}</td>
+                        <td>${day.trades}</td>
+                        <td>${day.wins}</td>
+                        <td>${day.losses}</td>
+                        <td>${winRate}%</td>
+                        <td class="${day.pnl > 0 ? 'positive' : 'negative'}">₹${day.pnl.toFixed(2)}</td>
+                        <td>${day.points > 0 ? '+' : ''}${day.points.toFixed(1)}</td>
+                        <td>${day.ignored}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+        
+        // Initialize
+        showAllTimeView();
+    </script>
+</body>
+</html>

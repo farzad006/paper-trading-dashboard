@@ -1,0 +1,710 @@
+id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target_points,exit_time,exit_price,exit_reason,pnl_points,pnl_rupees,checklist_score,checklist_bias,checklist_details
+1,2026-04-16 11:45:14,SELL,NSE:NIFTY26APRFUT,24256.0,24282.7,24189.3,26.7,66.7,2026-04-16 12:00:13,24188.0,TARGET_HIT,68.0,5100.0,6,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (6/6)
+  ✅ 1. PCR Level: PCR 0.71 < 0.75 (Call writers dominant — Bearish)
+  ✅ 2. PCR Trend: PCR Falling 0.73 → 0.71 (Bearish momentum)
+  ✅ 3. Near-Strike OI: Bearish (2/3) — ATM 24250: CE 5m +168,935 | PE 5m +55,770 | OTM CE +377,715 | OTM PE -83,915
+  ✅ 4. Futures Buildup: Short Buildup (OI Chg: +248,605)
+  ✅ 5. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 6. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 6 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+2,2026-04-16 12:06:18,SELL,NSE:NIFTY26APRFUT,24170.0,24196.7,24103.3,26.7,66.7,2026-04-16 14:30:00,24201.3,SL_HIT,-31.3,-2347.5,6,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (6/6)
+  ✅ 1. PCR Level: PCR 0.65 < 0.75 (Call writers dominant — Bearish)
+  ✅ 2. PCR Trend: PCR Falling 0.67 → 0.65 (Bearish momentum)
+  ✅ 3. Near-Strike OI: Bearish (2/3) — ATM 24150: CE 5m +370,305 | PE 5m +293,280 | OTM CE +1,081,730 | OTM PE -96,395
+  ✅ 4. Futures Buildup: Short Buildup (OI Chg: +259,980)
+  ✅ 5. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 6. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 6 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+3,2026-04-17 09:41:13,SELL,NSE:NIFTY26APRFUT,24214.0,24240.7,24147.3,26.7,66.7,2026-04-17 10:03:42,24242.0,SL_HIT,-28.0,-2100.0,6,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (6/6)
+  ✅ 1. PCR Level: PCR 0.74 < 0.75 (Call writers dominant — Bearish)
+  ✅ 2. PCR Trend: PCR Falling 0.78 → 0.74 (Bearish momentum)
+  ✅ 3. Near-Strike OI: Bearish (3/3) — ATM 24200: CE 5m +892,840 | PE 5m -481,845 | OTM CE +186,550 | OTM PE +154,050
+  ✅ 4. Futures Buildup: Short Buildup (OI Chg: +182,540)
+  ✅ 5. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 6. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 6 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+4,2026-04-24 10:23:53,SELL,NSE:NIFTY26APRFUT,23979.2,24005.9,23912.5,26.7,66.7,2026-04-24 11:26:33,23965.0,COUNTER_VIEW_FLIP,14.2,1065.0,5,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Falling 0.86 → 0.85 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23950: CE 5m +132,860 | PE 5m -91,975 | OTM CE +274,105 | OTM PE +5,265
+  ✅ 3. Futures Buildup: Short Buildup (OI Chg: +655,565)
+  ✅ 4. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 5. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+5,2026-04-24 11:26:34,BUY,NSE:NIFTY26APRFUT,23969.0,23942.3,24035.7,26.7,66.7,2026-04-24 11:47:35,23952.2,COUNTER_VIEW_FLIP,-16.8,-1260.0,5,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Rising 0.73 → 0.74 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 23950: CE 5m +34,580 | PE 5m +184,145 | OTM CE +34,190 | OTM PE +277,030
+  ✅ 3. Futures Buildup: Long Buildup (OI Chg: +1,191,555)
+  ✅ 4. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 5. Order Flow: Buy dominant (29.0x)
+
+  🟢🟢 ALL 5 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+6,2026-04-24 11:47:36,SELL,NSE:NIFTY26APRFUT,23945.0,23971.7,23878.3,26.7,66.7,2026-04-24 13:13:16,23878.2,TARGET_HIT,66.8,5010.0,5,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Falling 0.83 → 0.83 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23900: CE 5m +42,640 | PE 5m +186,095 | OTM CE +3,900 | OTM PE -58,370
+  ✅ 3. Futures Buildup: Short Buildup (OI Chg: +1,398,580)
+  ✅ 4. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 5. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+7,2026-04-29 10:02:06,BUY,NSE:NIFTY26APRFUT,24315.0,24288.3,24381.7,26.7,66.7,2026-04-29 10:41:06,24315.0,COUNTER_VIEW_FLIP,0.0,0.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 1.12 → 1.14 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 24200: CE 5m +233,675 | PE 5m +691,600 | OTM CE +31,590 | OTM PE +491,140
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (32.6x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+8,2026-04-29 11:34:38,SELL,NSE:NIFTY26MAYFUT,24400.1,24426.8,24333.399999999998,26.7,66.7,2026-04-29 12:11:13,24430.0,SL_HIT,-29.9,-2242.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.45 → 1.32 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 24300: CE 5m +158,405 | PE 5m -98,410 | OTM CE +15,470 | OTM PE +37,505
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+9,2026-04-29 13:24:19,SELL,NSE:NIFTY26MAYFUT,24410.0,24436.7,24343.3,26.7,66.7,2026-04-29 14:00:03,24343.0,TARGET_HIT,67.0,5025.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.39 → 1.37 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 24300: CE 5m +106,080 | PE 5m -7,215 | OTM CE +22,750 | OTM PE -7,605
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+10,2026-04-30 09:28:24,SELL,NSE:NIFTY26MAYFUT,23935.0,23961.7,23868.3,26.7,66.7,2026-04-30 09:32:38,23962.0,SL_HIT,-27.0,-2025.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.12 → 1.08 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23900: CE 5m +1,378,845 | PE 5m +950,690 | OTM CE +529,750 | OTM PE +402,805
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+11,2026-04-30 10:01:57,SELL,NSE:NIFTY26MAYFUT,23907.0,23933.7,23840.3,26.7,66.7,2026-04-30 12:06:38,23934.9,SL_HIT,-27.9,-2092.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.19 → 1.09 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23850: CE 5m +219,245 | PE 5m -175,695 | OTM CE +545,415 | OTM PE -504,595
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+12,2026-04-30 12:26:55,BUY,NSE:NIFTY26MAYFUT,23988.0,23961.3,24054.7,26.7,66.7,2026-04-30 12:37:30,23961.0,SL_HIT,-27.0,-2025.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.85 → 0.86 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23900: CE 5m -53,495 | PE 5m +359,775 | OTM CE -61,685 | OTM PE +7,865
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (28.5x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+13,2026-04-30 12:45:48,BUY,NSE:NIFTY26MAYFUT,23978.0,23951.3,24044.7,26.7,66.7,2026-04-30 13:13:19,24019.8,COUNTER_VIEW_FLIP,41.8,3135.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.91 → 0.91 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 23900: CE 5m +53,950 | PE 5m +142,350 | OTM CE +15,470 | OTM PE +75,140
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (24.0x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+14,2026-04-30 13:13:19,SELL,NSE:NIFTY26MAYFUT,24019.8,24046.5,23953.1,26.7,66.7,2026-04-30 13:27:14,24048.0,SL_HIT,-28.2,-2115.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.91 → 0.90 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23950: CE 5m +69,550 | PE 5m +21,320 | OTM CE +120,835 | OTM PE +80,730
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+15,2026-04-30 14:06:32,SELL,NSE:NIFTY26MAYFUT,24078.5,24105.2,24011.8,26.7,66.7,2026-04-30 14:09:54,24110.0,SL_HIT,-31.5,-2362.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.93 → 0.93 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 24000: CE 5m +54,470 | PE 5m +137,085 | OTM CE +153,530 | OTM PE +130
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+16,2026-05-04 09:20:25,SELL,NSE:NIFTY26MAYFUT,24297.1,24323.8,24230.399999999998,26.7,66.7,2026-05-04 09:30:14,24324.7,SL_HIT,-27.6,-2070.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.62 → 0.60 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 24200: CE 5m +5,129,540 | PE 5m +2,810,990 | OTM CE +2,538,770 | OTM PE +2,029,365
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+17,2026-05-04 09:36:34,SELL,NSE:NIFTY26MAYFUT,24343.0,24369.7,24276.3,26.7,66.7,2026-05-04 09:41:28,24369.8,SL_HIT,-26.8,-2010.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.66 → 0.60 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 24250: CE 5m +419,770 | PE 5m +11,570 | OTM CE +911,105 | OTM PE +154,050
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+18,2026-05-04 09:44:06,BUY,NSE:NIFTY26MAYFUT,24368.5,24341.8,24435.2,26.7,66.7,2026-05-04 09:51:40,24341.1,SL_HIT,-27.4,-2055.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.66 → 0.75 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 24300: CE 5m -463,970 | PE 5m +1,541,215 | OTM CE -306,670 | OTM PE +1,644,955
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (25.6x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+19,2026-05-05 10:08:53,SELL,NSE:NIFTY26MAYFUT,24048.4,24075.100000000002,23981.7,26.7,66.7,2026-05-05 10:35:57,23981.0,TARGET_HIT,67.4,5055.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.89 → 0.89 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 24000: CE 5m +3,425,630 | PE 5m -5,664,945 | OTM CE +1,617,590 | OTM PE -796,380
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+20,2026-05-05 10:40:14,SELL,NSE:NIFTY26MAYFUT,23993.0,24019.7,23926.3,26.7,66.7,2026-05-05 12:21:02,24015.0,COUNTER_VIEW_FLIP,-22.0,-1650.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.80 → 0.69 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23950: CE 5m +2,579,785 | PE 5m -2,610,205 | OTM CE -129,415 | OTM PE -1,220,050
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+21,2026-05-05 12:21:03,BUY,NSE:NIFTY26MAYFUT,24014.0,23987.3,24080.7,26.7,66.7,2026-05-05 12:32:45,23986.9,SL_HIT,-27.1,-2032.5,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.67 → 0.67 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23950: CE 5m -2,779,660 | PE 5m +4,002,375 | OTM CE -1,440,920 | OTM PE +3,216,850
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (87.9x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+22,2026-05-06 10:12:03,SELL,NSE:NIFTY26MAYFUT,24200.0,24226.7,24133.3,26.7,66.7,2026-05-06 10:21:03,24228.0,SL_HIT,-28.0,-2100.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.71 → 0.71 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 24100: CE 5m +866,580 | PE 5m +33,475 | OTM CE +473,655 | OTM PE +134,420
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+23,2026-05-06 10:51:58,BUY,NSE:NIFTY26MAYFUT,24190.1,24163.399999999998,24256.8,26.7,66.7,2026-05-06 11:03:07,24161.0,SL_HIT,-29.1,-2182.5,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.67 → 0.71 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 24100: CE 5m -40,040 | PE 5m +66,040 | OTM CE -29,965 | OTM PE +2,080
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (25.4x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+24,2026-05-06 11:19:04,SELL,NSE:NIFTY26MAYFUT,24179.0,24205.7,24112.3,26.7,66.7,2026-05-06 11:39:33,24146.9,COUNTER_VIEW_FLIP,32.1,2407.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.64 → 0.64 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 24100: CE 5m +180,700 | PE 5m -51,025 | OTM CE +53,755 | OTM PE +30,420
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+25,2026-05-06 11:39:34,BUY,NSE:NIFTY26MAYFUT,24141.0,24114.3,24207.7,26.7,66.7,2026-05-06 11:59:40,24181.0,COUNTER_VIEW_FLIP,40.0,3000.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.64 → 0.65 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 24050: CE 5m -45,370 | PE 5m -7,280 | OTM CE -530,075 | OTM PE +39,130
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (22.4x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+26,2026-05-06 11:59:40,SELL,NSE:NIFTY26MAYFUT,24181.0,24207.7,24114.3,26.7,66.7,2026-05-06 12:22:55,24105.0,TARGET_HIT,76.0,5700.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.66 → 0.65 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 24100: CE 5m +100,035 | PE 5m -141,700 | OTM CE +165,490 | OTM PE -116,935
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+27,2026-05-06 12:38:24,BUY,NSE:NIFTY26MAYFUT,24106.5,24079.8,24173.2,26.7,66.7,2026-05-06 12:44:06,24075.0,SL_HIT,-31.5,-2362.5,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.63 → 0.63 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 24050: CE 5m +133,705 | PE 5m +42,575 | OTM CE -37,180 | OTM PE +32,955
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (3.0x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+28,2026-05-07 09:23:16,SELL,NSE:NIFTY26MAYFUT,24349.1,24375.8,24282.399999999998,26.7,66.7,2026-05-07 09:23:49,24379.6,SL_HIT,-30.5,-2287.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.98 → 0.89 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 24300: CE 5m +1,275,885 | PE 5m +856,960 | OTM CE +1,095,445 | OTM PE +183,625
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+29,2026-05-07 09:40:02,SELL,NSE:NIFTY26MAYFUT,24399.4,24426.100000000002,24332.7,26.7,66.7,2026-05-07 09:42:01,24429.0,SL_HIT,-29.6,-2220.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.87 → 0.87 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 24350: CE 5m +248,170 | PE 5m +173,940 | OTM CE +256,620 | OTM PE +113,360
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+30,2026-05-07 10:17:20,SELL,NSE:NIFTY26MAYFUT,24370.5,24397.2,24303.8,26.7,66.7,2026-05-07 10:25:50,24400.0,SL_HIT,-29.5,-2212.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.94 → 0.84 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 24350: CE 5m +107,575 | PE 5m -120,640 | OTM CE +231,205 | OTM PE +269,685
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+31,2026-05-08 09:47:23,SELL,NSE:NIFTY26MAYFUT,24220.0,24246.7,24153.3,26.7,66.7,2026-05-08 09:58:27,24246.8,SL_HIT,-26.8,-2010.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.13 → 0.99 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 24150: CE 5m +580,450 | PE 5m -278,590 | OTM CE +1,626,105 | OTM PE -531,700
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+32,2026-05-08 10:26:35,BUY,NSE:NIFTY26MAYFUT,24282.4,24255.7,24349.100000000002,26.7,66.7,2026-05-08 10:51:38,24255.0,SL_HIT,-27.4,-2055.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.84 → 0.87 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 24250: CE 5m +378,755 | PE 5m +217,620 | OTM CE +320,840 | OTM PE +782,535
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (34.5x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+33,2026-05-08 11:07:41,SELL,NSE:NIFTY26MAYFUT,24285.0,24311.7,24218.3,26.7,66.7,2026-05-08 12:10:04,24217.0,TARGET_HIT,68.0,5100.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.05 → 0.95 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 24250: CE 5m +238,615 | PE 5m -351,000 | OTM CE +140,530 | OTM PE -1,013,545
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+34,2026-05-08 13:48:55,SELL,NSE:NIFTY26MAYFUT,24215.0,24241.7,24148.3,26.7,66.7,2026-05-08 14:13:24,24195.0,COUNTER_VIEW_FLIP,20.0,1500.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.85 → 0.84 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 24150: CE 5m +106,340 | PE 5m -26,650 | OTM CE +400,465 | OTM PE -6,435
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+35,2026-05-08 14:13:25,BUY,NSE:NIFTY26MAYFUT,24202.4,24175.7,24269.100000000002,26.7,66.7,2026-05-08 14:39:47,24269.9,TARGET_HIT,67.5,5062.5,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.77 → 0.78 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 24150: CE 5m -76,180 | PE 5m +247,455 | OTM CE -243,295 | OTM PE -33,800
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (3.4x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+36,2026-05-11 09:39:16,SELL,NSE:NIFTY26MAYFUT,23911.5,23938.2,23844.8,26.7,66.7,2026-05-11 11:07:16,23941.0,SL_HIT,-29.5,-2212.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.20 → 1.17 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23900: CE 5m +1,285,310 | PE 5m -255,515 | OTM CE +936,065 | OTM PE +182,520
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+37,2026-05-11 11:21:09,BUY,NSE:NIFTY26MAYFUT,23965.0,23938.3,24031.7,26.7,66.7,2026-05-11 12:38:29,23934.1,SL_HIT,-30.9,-2317.5,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.92 → 0.93 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23900: CE 5m -68,510 | PE 5m +1,168,505 | OTM CE -106,340 | OTM PE +381,615
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (27.5x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+38,2026-05-11 14:13:45,SELL,NSE:NIFTY26MAYFUT,23980.8,24007.5,23914.1,26.7,66.7,2026-05-11 14:49:25,23912.0,TARGET_HIT,68.8,5160.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.22 → 1.22 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23950: CE 5m -455 | PE 5m -16,380 | OTM CE +246,740 | OTM PE -59,085
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+39,2026-05-11 14:51:46,SELL,NSE:NIFTY26MAYFUT,23926.3,23953.0,23859.6,26.7,66.7,2026-05-11 15:05:55,23858.0,TARGET_HIT,68.3,5122.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.08 → 1.07 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23900: CE 5m +914,680 | PE 5m -1,733,030 | OTM CE +217,750 | OTM PE -586,105
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+40,2026-05-12 10:02:48,SELL,NSE:NIFTY26MAYFUT,23649.8,23676.5,23583.1,26.7,66.7,2026-05-12 10:12:10,23676.5,SL_HIT,-26.7,-2002.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.73 → 0.68 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23600: CE 5m +1,674,660 | PE 5m -134,810 | OTM CE +2,005,250 | OTM PE +524,810
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+41,2026-05-12 10:36:31,SELL,NSE:NIFTY26MAYFUT,23651.0,23677.7,23584.3,26.7,66.7,2026-05-12 12:09:08,23581.0,TARGET_HIT,70.0,5250.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.74 → 0.74 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23600: CE 5m +1,854,450 | PE 5m +943,800 | OTM CE +1,635,270 | OTM PE +250,640
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+42,2026-05-12 12:17:01,SELL,NSE:NIFTY26MAYFUT,23595.6,23622.3,23528.899999999998,26.7,66.7,2026-05-12 14:00:11,23526.0,TARGET_HIT,69.6,5220.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.62 → 0.62 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23550: CE 5m +1,768,260 | PE 5m +1,189,630 | OTM CE +2,338,310 | OTM PE +1,329,250
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+43,2026-05-12 14:01:07,SELL,NSE:NIFTY26MAYFUT,23523.9,23550.600000000002,23457.2,26.7,66.7,2026-05-12 14:55:18,23455.0,TARGET_HIT,68.9,5167.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.76 → 0.76 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23500: CE 5m +4,353,570 | PE 5m -835,900 | OTM CE +887,510 | OTM PE +1,122,290
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+44,2026-05-12 14:57:53,SELL,NSE:NIFTY26MAYFUT,23449.0,23475.7,23382.3,26.7,66.7,2026-05-12 15:10:01,23412.0,EOD_CLOSE,37.0,2775.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.79 → 0.75 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23400: CE 5m +4,591,795 | PE 5m -428,675 | OTM CE +15,765,750 | OTM PE +34,385
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+45,2026-05-13 09:16:25,SELL,NSE:NIFTY26MAYFUT,23500.0,23526.7,23433.3,26.7,66.7,2026-05-13 09:21:32,23431.0,TARGET_HIT,69.0,5175.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.48 → 1.01 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23450: CE 5m +217,230 | PE 5m +208,065 | OTM CE +411,385 | OTM PE +302,775
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+46,2026-05-13 09:38:31,SELL,NSE:NIFTY26MAYFUT,23349.3,23376.0,23282.6,26.7,66.7,2026-05-13 09:45:35,23376.1,SL_HIT,-26.8,-2010.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.41 → 1.37 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23300: CE 5m +397,085 | PE 5m +646,100 | OTM CE +328,770 | OTM PE +80,275
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.1x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+47,2026-05-13 10:23:48,BUY,NSE:NIFTY26MAYFUT,23490.0,23463.3,23556.7,26.7,66.7,2026-05-13 10:43:58,23505.0,COUNTER_VIEW_FLIP,15.0,1125.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 1.21 → 1.22 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23450: CE 5m -25,025 | PE 5m +284,570 | OTM CE -197,015 | OTM PE +147,485
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (62.3x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+48,2026-05-13 10:43:59,SELL,NSE:NIFTY26MAYFUT,23500.0,23526.7,23433.3,26.7,66.7,2026-05-13 10:58:42,23431.9,TARGET_HIT,68.1,5107.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.35 → 1.34 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23450: CE 5m +192,400 | PE 5m +77,220 | OTM CE +222,430 | OTM PE +30,940
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+49,2026-05-13 12:01:02,SELL,NSE:NIFTY26MAYFUT,23511.1,23537.8,23444.399999999998,26.7,66.7,2026-05-13 12:14:21,23538.3,SL_HIT,-27.2,-2040.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.17 → 1.16 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23500: CE 5m -6,565 | PE 5m -159,315 | OTM CE +51,870 | OTM PE +33,995
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+50,2026-05-13 13:33:35,SELL,NSE:NIFTY26MAYFUT,23570.0,23596.7,23503.3,26.7,66.7,2026-05-13 13:55:58,23503.1,TARGET_HIT,66.9,5017.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.17 → 0.99 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23550: CE 5m +172,770 | PE 5m -119,925 | OTM CE +20,605 | OTM PE -189,930
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+51,2026-05-13 14:54:38,BUY,NSE:NIFTY26MAYFUT,23507.5,23480.8,23574.2,26.7,66.7,2026-05-13 15:00:08,23480.0,SL_HIT,-27.5,-2062.5,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 1.09 → 1.10 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 23500: CE 5m +88,595 | PE 5m +154,895 | OTM CE +19,110 | OTM PE +110,825
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (20.0x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+52,2026-05-14 10:45:55,BUY,NSE:NIFTY26MAYFUT,23496.3,23469.6,23563.0,26.7,66.7,2026-05-14 10:48:43,23469.3,SL_HIT,-27.0,-2025.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.93 → 0.94 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23500: CE 5m -309,335 | PE 5m +128,440 | OTM CE -174,070 | OTM PE +53,820
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (26.8x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+53,2026-05-14 11:29:30,BUY,NSE:NIFTY26MAYFUT,23600.0,23573.3,23666.7,26.7,66.7,2026-05-14 11:41:57,23670.0,TARGET_HIT,70.0,5250.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.81 → 0.82 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23550: CE 5m -43,485 | PE 5m +306,670 | OTM CE -275,535 | OTM PE +601,120
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (24.9x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+54,2026-05-14 11:44:12,BUY,NSE:NIFTY26MAYFUT,23672.1,23645.399999999998,23738.8,26.7,66.7,2026-05-14 12:05:23,23661.2,COUNTER_VIEW_FLIP,-10.9,-817.5,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.98 → 1.01 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 23650: CE 5m +105,170 | PE 5m +187,850 | OTM CE -195,650 | OTM PE +473,980
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (27.0x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+55,2026-05-14 12:05:24,SELL,NSE:NIFTY26MAYFUT,23666.4,23693.100000000002,23599.7,26.7,66.7,2026-05-14 12:15:15,23694.0,SL_HIT,-27.6,-2070.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.29 → 1.29 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23650: CE 5m +49,530 | PE 5m +99,515 | OTM CE +1,560 | OTM PE -37,180
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+56,2026-05-15 09:42:20,SELL,NSE:NIFTY26MAYFUT,23790.0,23816.7,23723.3,26.7,66.7,2026-05-15 09:44:23,23811.0,COUNTER_VIEW_FLIP,-21.0,-1575.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.15 → 1.06 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23800: CE 5m +757,575 | PE 5m -261,040 | OTM CE +214,435 | OTM PE -29,770
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+57,2026-05-15 09:44:24,BUY,NSE:NIFTY26MAYFUT,23811.9,23785.2,23878.600000000002,26.7,66.7,2026-05-15 10:09:40,23785.0,SL_HIT,-26.9,-2017.5,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 1.09 → 1.12 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 23800: CE 5m +149,760 | PE 5m +453,375 | OTM CE +42,380 | OTM PE +132,665
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (22.8x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+58,2026-05-15 10:17:01,SELL,NSE:NIFTY26MAYFUT,23802.1,23828.8,23735.399999999998,26.7,66.7,2026-05-15 10:26:14,23829.0,SL_HIT,-26.9,-2017.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.25 → 1.23 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23800: CE 5m +677,755 | PE 5m +28,405 | OTM CE +387,725 | OTM PE +68,510
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+59,2026-05-18 09:50:52,SELL,NSE:NIFTY26MAYFUT,23370.0,23396.7,23303.3,26.7,66.7,2026-05-18 10:16:45,23398.0,SL_HIT,-28.0,-2100.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.23 → 1.21 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23350: CE 5m +420,550 | PE 5m -5,330 | OTM CE +813,605 | OTM PE +130,455
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+60,2026-05-18 10:19:09,SELL,NSE:NIFTY26MAYFUT,23410.0,23436.7,23343.3,26.7,66.7,2026-05-18 10:35:12,23440.0,SL_HIT,-30.0,-2250.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.01 → 1.00 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23400: CE 5m +199,030 | PE 5m -113,815 | OTM CE +120,965 | OTM PE -202,085
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+61,2026-05-18 10:35:13,SELL,NSE:NIFTY26MAYFUT,23430.0,23456.7,23363.3,26.7,66.7,2026-05-18 10:55:44,23458.8,SL_HIT,-28.8,-2160.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.21 → 1.08 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23400: CE 5m -231,140 | PE 5m -1,263,405 | OTM CE -366,860 | OTM PE -522,990
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+62,2026-05-19 09:28:15,BUY,NSE:NIFTY26MAYFUT,23745.0,23718.3,23811.7,26.7,66.7,2026-05-19 09:33:07,23717.0,SL_HIT,-28.0,-2100.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 1.04 → 1.04 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 23750: CE 5m +1,275,885 | PE 5m +3,502,590 | OTM CE +1,639,170 | OTM PE +5,020,145
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (23.4x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+63,2026-05-19 10:03:09,SELL,NSE:NIFTY26MAYFUT,23720.4,23747.100000000002,23653.7,26.7,66.7,2026-05-19 10:11:43,23747.9,SL_HIT,-27.5,-2062.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.91 → 0.91 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23700: CE 5m +769,340 | PE 5m -547,040 | OTM CE +435,695 | OTM PE -180,505
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.1x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+64,2026-05-19 10:14:06,BUY,NSE:NIFTY26MAYFUT,23755.0,23728.3,23821.7,26.7,66.7,2026-05-19 10:18:20,23725.0,SL_HIT,-30.0,-2250.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.90 → 0.97 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23750: CE 5m -3,459,040 | PE 5m +3,014,115 | OTM CE -2,369,380 | OTM PE +3,054,545
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (21.0x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+65,2026-05-20 10:28:49,SELL,NSE:NIFTY26MAYFUT,23509.0,23535.7,23442.3,26.7,66.7,2026-05-20 10:31:36,23539.5,SL_HIT,-30.5,-2287.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.24 → 1.23 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23500: CE 5m +180,245 | PE 5m -227,760 | OTM CE -131,560 | OTM PE -90,155
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+66,2026-05-20 10:32:07,SELL,NSE:NIFTY26MAYFUT,23539.4,23566.100000000002,23472.7,26.7,66.7,2026-05-20 10:32:47,23567.4,SL_HIT,-28.0,-2100.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 1.22 → 1.02 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23550: CE 5m +25,025 | PE 5m -53,560 | OTM CE +100,880 | OTM PE -316,160
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+67,2026-05-20 10:41:38,BUY,NSE:NIFTY26MAYFUT,23557.0,23530.3,23623.7,26.7,66.7,2026-05-20 10:45:20,23530.0,SL_HIT,-27.0,-2025.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 1.11 → 1.11 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23550: CE 5m -142,090 | PE 5m +330,005 | OTM CE +70,525 | OTM PE +316,680
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (53.9x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+68,2026-05-21 10:06:18,SELL,NSE:NIFTY26MAYFUT,23764.9,23791.600000000002,23698.2,26.7,66.7,2026-05-21 11:00:12,23695.0,TARGET_HIT,69.9,5242.5,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.82 → 0.81 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23800: CE 5m +481,845 | PE 5m +56,745 | OTM CE +86,190 | OTM PE +77,935
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+69,2026-05-21 11:10:57,SELL,NSE:NIFTY26MAYFUT,23693.2,23719.9,23626.5,26.7,66.7,2026-05-21 11:18:00,23620.0,TARGET_HIT,73.2,5490.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.81 → 0.80 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23700: CE 5m +400,465 | PE 5m +13,845 | OTM CE +180,050 | OTM PE -26,650
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+70,2026-05-21 14:10:14,SELL,NSE:NIFTY26MAYFUT,23620.0,23646.7,23553.3,26.7,66.7,2026-05-21 14:26:10,23647.0,SL_HIT,-27.0,-2025.0,4,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Falling 0.73 → 0.73 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23650: CE 5m +98,670 | PE 5m -24,245 | OTM CE -7,150 | OTM PE +112,190
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+
+  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
