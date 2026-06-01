@@ -948,3 +948,13 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
+95,2026-06-01 12:43:06,BUY,NSE:NIFTY26JUNFUT,23570.5,23543.8,23637.2,26.7,66.7,2026-06-01 13:08:10,23543.5,SL_HIT,-27.0,-2025.0,4,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (4/4)
+  ✅ 1. PCR Trend: PCR Rising 0.83 → 0.83 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 23500: CE 5m -24,180 | PE 5m +149,240 | OTM CE +40,430 | OTM PE -62,400
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (21.7x)
+
+  🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
