@@ -143,7 +143,7 @@ tr.loss td { background: rgba(248, 113, 113, 0.05); }
         <div class="logo">AF</div>
         <div>
           <h1>Paper Trading Dashboard</h1>
-          <p>Performance analytics · Updated 2026-06-05 14:53:36</p>
+          <p>Performance analytics · Updated 2026-06-05 16:12:29</p>
         </div>
       </div>
       <span class="chip live">Live data</span>
@@ -156,6 +156,7 @@ tr.loss td { background: rgba(248, 113, 113, 0.05); }
       </select>
       <button type="button" class="btn primary" onclick="location.reload()">Refresh</button>
       <span class="chip">Auto-refresh 5 min</span>
+      <a href="ignored_trades_dashboard.html" target="_blank" id="ignoredTradesBtn" class="btn" style="margin-left:auto;background:linear-gradient(135deg,#f59e0b,#fb923c);border:none;color:#fff;gap:0.4rem;text-decoration:none;">&#x26A1; View Ignored Trades</a>
     </div>
 
     <div class="stats" id="statsContainer">
@@ -193,6 +194,11 @@ tr.loss td { background: rgba(248, 113, 113, 0.05); }
         <h3>Gross profit</h3>
         <div class="value positive" id="grossProfit">₹167,550.00</div>
         <div class="sub">All wins</div>
+      </div>
+      <div class="stat">
+        <h3>Gross loss</h3>
+        <div class="value negative" id="grossLoss">₹157,987.50</div>
+        <div class="sub">All losses</div>
       </div>
       <div class="stat">
         <h3>Best trade</h3>
@@ -271,6 +277,7 @@ tr.loss td { background: rgba(248, 113, 113, 0.05); }
       const profitFactor = grossLoss > 0 ? grossProfit / grossLoss : 0;
 
       document.getElementById('totalTrades').textContent = trades.length;
+      document.getElementById('grossLoss').textContent = '₹' + grossLoss.toLocaleString('en-IN', {minimumFractionDigits: 2});
       const netEl = document.getElementById('netPnl');
       netEl.textContent = '₹' + totalPnl.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
       netEl.className = 'value ' + (totalPnl > 0 ? 'positive' : 'negative');
