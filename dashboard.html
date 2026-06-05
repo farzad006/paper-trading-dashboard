@@ -1,237 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="300">
-    <title>Paper Trading Dashboard - Live</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; padding: 20px; }
-        .container { max-width: 1400px; margin: 0 auto; }
-        h1 { color: #2c3e50; margin-bottom: 10px; font-size: 32px; }
-        .subtitle { color: #7f8c8d; margin-bottom: 20px; font-size: 16px; }
-        
-        .controls { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-        .controls select { padding: 10px 15px; border: 2px solid #3498db; border-radius: 6px; font-size: 14px; cursor: pointer; }
-        .controls button { padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
-        .controls button:hover { background: #2980b9; }
-        .auto-refresh { color: #27ae60; font-size: 13px; }
-        
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .stat-card h3 { color: #7f8c8d; font-size: 14px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
-        .stat-card .value { font-size: 36px; font-weight: bold; margin-bottom: 5px; }
-        .stat-card .subtext { color: #95a5a6; font-size: 13px; }
-        .positive { color: #27ae60; }
-        .negative { color: #e74c3c; }
-        .neutral { color: #3498db; }
-        
-        .section { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 30px; }
-        .section h2 { color: #2c3e50; margin-bottom: 20px; font-size: 24px; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: #34495e; color: white; padding: 12px; text-align: left; font-weight: 600; font-size: 13px; }
-        td { padding: 12px; border-bottom: 1px solid #ecf0f1; font-size: 14px; }
-        tr:hover { background: #f8f9fa; }
-        
-        .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; }
-        .badge-success { background: #27ae60; color: white; }
-        .badge-danger { background: #e74c3c; color: white; }
-        .badge-warning { background: #f39c12; color: white; }
-        .badge-info { background: #3498db; color: white; }
-        .badge-buy { background: #27ae60; color: white; }
-        .badge-sell { background: #e74c3c; color: white; }
-        .win-row { background: #d5f4e6; }
-        .loss-row { background: #fadbd8; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="300">
+  <title>Paper Trading Dashboard — Algo Fyers</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+:root {
+  --bg: #06080f;
+  --surface: rgba(18, 24, 38, 0.85);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f0f4fc;
+  --muted: #8b9bb8;
+  --accent: #6366f1;
+  --accent-2: #22d3ee;
+  --ok: #34d399;
+  --err: #f87171;
+  --warn: #fbbf24;
+  --radius: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+.bg-mesh {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.35), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(34, 211, 238, 0.2), transparent);
+}
+.wrap { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 1.5rem; }
+.topbar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+}
+.brand { display: flex; align-items: center; gap: 1rem; }
+.logo {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: grid; place-items: center; font-weight: 700; font-size: 0.85rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+}
+.brand h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.03em; }
+.brand p { color: var(--muted); font-size: 0.85rem; }
+.chip {
+  font-size: 0.75rem; font-weight: 600; padding: 0.35rem 0.75rem;
+  border-radius: 999px; border: 1px solid var(--border); background: var(--surface);
+}
+.chip.live { border-color: rgba(52, 211, 153, 0.4); color: var(--ok); }
+.toolbar {
+  display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;
+  padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); backdrop-filter: blur(16px);
+}
+.toolbar label { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
+.toolbar select {
+  background: rgba(0,0,0,0.35); border: 1px solid var(--border); color: var(--text);
+  padding: 0.5rem 1rem; border-radius: 10px; font: inherit; cursor: pointer;
+}
+.btn {
+  font: inherit; font-weight: 600; font-size: 0.85rem;
+  padding: 0.55rem 1rem; border-radius: 10px; border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05); color: var(--text); cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center;
+}
+.btn.primary {
+  background: linear-gradient(135deg, var(--accent), #818cf8);
+  border: none; color: #fff;
+}
+.btn:hover { filter: brightness(1.08); }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem; margin-bottom: 1.25rem;
+}
+.stat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.1rem 1.25rem;
+  backdrop-filter: blur(16px); transition: transform 0.15s;
+}
+.stat:hover { transform: translateY(-2px); }
+.stat h3 {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); font-weight: 600; margin-bottom: 0.5rem;
+}
+.stat .value { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
+.stat .sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+.positive { color: var(--ok); }
+.negative { color: var(--err); }
+.neutral { color: var(--accent-2); }
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem;
+  backdrop-filter: blur(16px); overflow: hidden;
+}
+.panel h2 {
+  font-size: 1rem; font-weight: 600; margin-bottom: 1rem;
+  padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+}
+.table-wrap { overflow-x: auto; margin: 0 -0.25rem; }
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+th {
+  text-align: left; padding: 0.75rem 0.65rem;
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+  font-weight: 600; white-space: nowrap;
+}
+td { padding: 0.7rem 0.65rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+tr:hover td { background: rgba(255,255,255,0.03); }
+tr.win td { background: rgba(52, 211, 153, 0.06); }
+tr.loss td { background: rgba(248, 113, 113, 0.05); }
+.badge {
+  display: inline-block; padding: 0.2rem 0.5rem; border-radius: 6px;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.03em;
+}
+.badge-buy { background: rgba(52, 211, 153, 0.2); color: var(--ok); }
+.badge-sell { background: rgba(248, 113, 113, 0.2); color: #fca5a5; }
+.badge-target { background: rgba(52, 211, 153, 0.25); color: var(--ok); }
+.badge-sl { background: rgba(248, 113, 113, 0.25); color: var(--err); }
+.badge-flip { background: rgba(251, 191, 36, 0.2); color: var(--warn); }
+.badge-other { background: rgba(99, 102, 241, 0.2); color: #c7d2fe; }
+.footer {
+  margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  font-size: 0.8rem; color: var(--muted); text-align: center;
+}
+@media (max-width: 640px) {
+  .stat .value { font-size: 1.4rem; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>📊 Paper Trading Dashboard</h1>
-        <p class="subtitle">Live Performance Analysis | Last Updated: 2026-06-01 14:08:33</p>
-        
-        <div class="controls">
-            <label><strong>View Period:</strong></label>
-            <select id="monthSelect" onchange="filterByMonth()">
-                <option value="all">All Time</option>
-            </select>
-            <button onclick="location.reload()">🔄 Refresh Now</button>
-            <span class="auto-refresh">⏱️ Auto-refresh every 5 minutes</span>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">AF</div>
+        <div>
+          <h1>Paper Trading Dashboard</h1>
+          <p>Performance analytics · Updated 2026-06-05 14:53:36</p>
         </div>
-        
-        <div id="statsContainer">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total Trades</h3>
-                    <div class="value neutral" id="totalTrades">95</div>
-                    <div class="subtext">Executed trades</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Net P&L</h3>
-                    <div class="value positive" id="netPnl">₹2,392.50</div>
-                    <div class="subtext" id="netPoints">+31.9 points</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Win Rate</h3>
-                    <div class="value neutral" id="winRate">35.79%</div>
-                    <div class="subtext" id="winLoss">34 wins / 61 losses</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Avg Win</h3>
-                    <div class="value positive" id="avgWin">₹3,950.74</div>
-                    <div class="subtext">Per winning trade</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Avg Loss</h3>
-                    <div class="value negative" id="avgLoss">₹-2,162.83</div>
-                    <div class="subtext">Per losing trade</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Profit Factor</h3>
-                    <div class="value positive" id="profitFactor">1.02</div>
-                    <div class="subtext">Gross profit / Gross loss</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Ignored Trades</h3>
-                    <div class="value neutral" id="ignoredTrades">0</div>
-                    <div class="subtext">Not shown</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Best Trade</h3>
-                    <div class="value positive" id="bestTrade">₹5,700.00</div>
-                    <div class="subtext">Trade #26</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 id="tableTitle">📅 Trade History - All Time</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Entry Time</th>
-                        <th>Side</th>
-                        <th>Entry Price</th>
-                        <th>Exit Price</th>
-                        <th>Exit Time</th>
-                        <th>Exit Reason</th>
-                        <th>P&L (₹)</th>
-                        <th>Points</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody id="tradesTable">
-                </tbody>
-            </table>
-        </div>
+      </div>
+      <span class="chip live">Live data</span>
+    </header>
+
+    <div class="toolbar">
+      <label for="monthSelect">Period</label>
+      <select id="monthSelect" onchange="filterByMonth()">
+        <option value="all">All time</option>
+      </select>
+      <button type="button" class="btn primary" onclick="location.reload()">Refresh</button>
+      <span class="chip">Auto-refresh 5 min</span>
     </div>
-    
-    <script>
-        const allTrades = [{"id": 1, "entry_time": "2026-04-16 11:45:14", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 24256.0, "sl_price": 24282.7, "target_price": 24189.3, "exit_time": "2026-04-16 12:00:13", "exit_price": 24188.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.0, "pnl_rupees": 5100.0, "checklist_score": 6, "checklist_bias": "BEARISH"}, {"id": 2, "entry_time": "2026-04-16 12:06:18", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 24170.0, "sl_price": 24196.7, "target_price": 24103.3, "exit_time": "2026-04-16 14:30:00", "exit_price": 24201.3, "exit_reason": "SL_HIT", "pnl_points": -31.3, "pnl_rupees": -2347.5, "checklist_score": 6, "checklist_bias": "BEARISH"}, {"id": 3, "entry_time": "2026-04-17 09:41:13", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 24214.0, "sl_price": 24240.7, "target_price": 24147.3, "exit_time": "2026-04-17 10:03:42", "exit_price": 24242.0, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 6, "checklist_bias": "BEARISH"}, {"id": 4, "entry_time": "2026-04-24 10:23:53", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 23979.2, "sl_price": 24005.9, "target_price": 23912.5, "exit_time": "2026-04-24 11:26:33", "exit_price": 23965.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 14.2, "pnl_rupees": 1065.0, "checklist_score": 5, "checklist_bias": "BEARISH"}, {"id": 5, "entry_time": "2026-04-24 11:26:34", "side": "BUY", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 23969.0, "sl_price": 23942.3, "target_price": 24035.7, "exit_time": "2026-04-24 11:47:35", "exit_price": 23952.2, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -16.8, "pnl_rupees": -1260.0, "checklist_score": 5, "checklist_bias": "BULLISH"}, {"id": 6, "entry_time": "2026-04-24 11:47:36", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 23945.0, "sl_price": 23971.7, "target_price": 23878.3, "exit_time": "2026-04-24 13:13:16", "exit_price": 23878.2, "exit_reason": "TARGET_HIT", "pnl_points": 66.8, "pnl_rupees": 5010.0, "checklist_score": 5, "checklist_bias": "BEARISH"}, {"id": 7, "entry_time": "2026-04-29 10:02:06", "side": "BUY", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 24315.0, "sl_price": 24288.3, "target_price": 24381.7, "exit_time": "2026-04-29 10:41:06", "exit_price": 24315.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 0.0, "pnl_rupees": 0.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 8, "entry_time": "2026-04-29 11:34:38", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24400.1, "sl_price": 24426.8, "target_price": 24333.399999999998, "exit_time": "2026-04-29 12:11:13", "exit_price": 24430.0, "exit_reason": "SL_HIT", "pnl_points": -29.9, "pnl_rupees": -2242.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 9, "entry_time": "2026-04-29 13:24:19", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24410.0, "sl_price": 24436.7, "target_price": 24343.3, "exit_time": "2026-04-29 14:00:03", "exit_price": 24343.0, "exit_reason": "TARGET_HIT", "pnl_points": 67.0, "pnl_rupees": 5025.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 10, "entry_time": "2026-04-30 09:28:24", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23935.0, "sl_price": 23961.7, "target_price": 23868.3, "exit_time": "2026-04-30 09:32:38", "exit_price": 23962.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 11, "entry_time": "2026-04-30 10:01:57", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23907.0, "sl_price": 23933.7, "target_price": 23840.3, "exit_time": "2026-04-30 12:06:38", "exit_price": 23934.9, "exit_reason": "SL_HIT", "pnl_points": -27.9, "pnl_rupees": -2092.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 12, "entry_time": "2026-04-30 12:26:55", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23988.0, "sl_price": 23961.3, "target_price": 24054.7, "exit_time": "2026-04-30 12:37:30", "exit_price": 23961.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 13, "entry_time": "2026-04-30 12:45:48", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23978.0, "sl_price": 23951.3, "target_price": 24044.7, "exit_time": "2026-04-30 13:13:19", "exit_price": 24019.8, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 41.8, "pnl_rupees": 3135.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 14, "entry_time": "2026-04-30 13:13:19", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24019.8, "sl_price": 24046.5, "target_price": 23953.1, "exit_time": "2026-04-30 13:27:14", "exit_price": 24048.0, "exit_reason": "SL_HIT", "pnl_points": -28.2, "pnl_rupees": -2115.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 15, "entry_time": "2026-04-30 14:06:32", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24078.5, "sl_price": 24105.2, "target_price": 24011.8, "exit_time": "2026-04-30 14:09:54", "exit_price": 24110.0, "exit_reason": "SL_HIT", "pnl_points": -31.5, "pnl_rupees": -2362.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 16, "entry_time": "2026-05-04 09:20:25", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24297.1, "sl_price": 24323.8, "target_price": 24230.399999999998, "exit_time": "2026-05-04 09:30:14", "exit_price": 24324.7, "exit_reason": "SL_HIT", "pnl_points": -27.6, "pnl_rupees": -2070.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 17, "entry_time": "2026-05-04 09:36:34", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24343.0, "sl_price": 24369.7, "target_price": 24276.3, "exit_time": "2026-05-04 09:41:28", "exit_price": 24369.8, "exit_reason": "SL_HIT", "pnl_points": -26.8, "pnl_rupees": -2010.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 18, "entry_time": "2026-05-04 09:44:06", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24368.5, "sl_price": 24341.8, "target_price": 24435.2, "exit_time": "2026-05-04 09:51:40", "exit_price": 24341.1, "exit_reason": "SL_HIT", "pnl_points": -27.4, "pnl_rupees": -2055.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 19, "entry_time": "2026-05-05 10:08:53", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24048.4, "sl_price": 24075.100000000002, "target_price": 23981.7, "exit_time": "2026-05-05 10:35:57", "exit_price": 23981.0, "exit_reason": "TARGET_HIT", "pnl_points": 67.4, "pnl_rupees": 5055.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 20, "entry_time": "2026-05-05 10:40:14", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23993.0, "sl_price": 24019.7, "target_price": 23926.3, "exit_time": "2026-05-05 12:21:02", "exit_price": 24015.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -22.0, "pnl_rupees": -1650.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 21, "entry_time": "2026-05-05 12:21:03", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24014.0, "sl_price": 23987.3, "target_price": 24080.7, "exit_time": "2026-05-05 12:32:45", "exit_price": 23986.9, "exit_reason": "SL_HIT", "pnl_points": -27.1, "pnl_rupees": -2032.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 22, "entry_time": "2026-05-06 10:12:03", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24200.0, "sl_price": 24226.7, "target_price": 24133.3, "exit_time": "2026-05-06 10:21:03", "exit_price": 24228.0, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 23, "entry_time": "2026-05-06 10:51:58", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24190.1, "sl_price": 24163.399999999998, "target_price": 24256.8, "exit_time": "2026-05-06 11:03:07", "exit_price": 24161.0, "exit_reason": "SL_HIT", "pnl_points": -29.1, "pnl_rupees": -2182.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 24, "entry_time": "2026-05-06 11:19:04", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24179.0, "sl_price": 24205.7, "target_price": 24112.3, "exit_time": "2026-05-06 11:39:33", "exit_price": 24146.9, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 32.1, "pnl_rupees": 2407.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 25, "entry_time": "2026-05-06 11:39:34", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24141.0, "sl_price": 24114.3, "target_price": 24207.7, "exit_time": "2026-05-06 11:59:40", "exit_price": 24181.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 40.0, "pnl_rupees": 3000.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 26, "entry_time": "2026-05-06 11:59:40", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24181.0, "sl_price": 24207.7, "target_price": 24114.3, "exit_time": "2026-05-06 12:22:55", "exit_price": 24105.0, "exit_reason": "TARGET_HIT", "pnl_points": 76.0, "pnl_rupees": 5700.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 27, "entry_time": "2026-05-06 12:38:24", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24106.5, "sl_price": 24079.8, "target_price": 24173.2, "exit_time": "2026-05-06 12:44:06", "exit_price": 24075.0, "exit_reason": "SL_HIT", "pnl_points": -31.5, "pnl_rupees": -2362.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 28, "entry_time": "2026-05-07 09:23:16", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24349.1, "sl_price": 24375.8, "target_price": 24282.399999999998, "exit_time": "2026-05-07 09:23:49", "exit_price": 24379.6, "exit_reason": "SL_HIT", "pnl_points": -30.5, "pnl_rupees": -2287.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 29, "entry_time": "2026-05-07 09:40:02", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24399.4, "sl_price": 24426.100000000002, "target_price": 24332.7, "exit_time": "2026-05-07 09:42:01", "exit_price": 24429.0, "exit_reason": "SL_HIT", "pnl_points": -29.6, "pnl_rupees": -2220.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 30, "entry_time": "2026-05-07 10:17:20", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24370.5, "sl_price": 24397.2, "target_price": 24303.8, "exit_time": "2026-05-07 10:25:50", "exit_price": 24400.0, "exit_reason": "SL_HIT", "pnl_points": -29.5, "pnl_rupees": -2212.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 31, "entry_time": "2026-05-08 09:47:23", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24220.0, "sl_price": 24246.7, "target_price": 24153.3, "exit_time": "2026-05-08 09:58:27", "exit_price": 24246.8, "exit_reason": "SL_HIT", "pnl_points": -26.8, "pnl_rupees": -2010.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 32, "entry_time": "2026-05-08 10:26:35", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24282.4, "sl_price": 24255.7, "target_price": 24349.100000000002, "exit_time": "2026-05-08 10:51:38", "exit_price": 24255.0, "exit_reason": "SL_HIT", "pnl_points": -27.4, "pnl_rupees": -2055.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 33, "entry_time": "2026-05-08 11:07:41", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24285.0, "sl_price": 24311.7, "target_price": 24218.3, "exit_time": "2026-05-08 12:10:04", "exit_price": 24217.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.0, "pnl_rupees": 5100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 34, "entry_time": "2026-05-08 13:48:55", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24215.0, "sl_price": 24241.7, "target_price": 24148.3, "exit_time": "2026-05-08 14:13:24", "exit_price": 24195.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 20.0, "pnl_rupees": 1500.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 35, "entry_time": "2026-05-08 14:13:25", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24202.4, "sl_price": 24175.7, "target_price": 24269.100000000002, "exit_time": "2026-05-08 14:39:47", "exit_price": 24269.9, "exit_reason": "TARGET_HIT", "pnl_points": 67.5, "pnl_rupees": 5062.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 36, "entry_time": "2026-05-11 09:39:16", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23911.5, "sl_price": 23938.2, "target_price": 23844.8, "exit_time": "2026-05-11 11:07:16", "exit_price": 23941.0, "exit_reason": "SL_HIT", "pnl_points": -29.5, "pnl_rupees": -2212.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 37, "entry_time": "2026-05-11 11:21:09", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23965.0, "sl_price": 23938.3, "target_price": 24031.7, "exit_time": "2026-05-11 12:38:29", "exit_price": 23934.1, "exit_reason": "SL_HIT", "pnl_points": -30.9, "pnl_rupees": -2317.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 38, "entry_time": "2026-05-11 14:13:45", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23980.8, "sl_price": 24007.5, "target_price": 23914.1, "exit_time": "2026-05-11 14:49:25", "exit_price": 23912.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.8, "pnl_rupees": 5160.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 39, "entry_time": "2026-05-11 14:51:46", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23926.3, "sl_price": 23953.0, "target_price": 23859.6, "exit_time": "2026-05-11 15:05:55", "exit_price": 23858.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.3, "pnl_rupees": 5122.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 40, "entry_time": "2026-05-12 10:02:48", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23649.8, "sl_price": 23676.5, "target_price": 23583.1, "exit_time": "2026-05-12 10:12:10", "exit_price": 23676.5, "exit_reason": "SL_HIT", "pnl_points": -26.7, "pnl_rupees": -2002.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 41, "entry_time": "2026-05-12 10:36:31", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23651.0, "sl_price": 23677.7, "target_price": 23584.3, "exit_time": "2026-05-12 12:09:08", "exit_price": 23581.0, "exit_reason": "TARGET_HIT", "pnl_points": 70.0, "pnl_rupees": 5250.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 42, "entry_time": "2026-05-12 12:17:01", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23595.6, "sl_price": 23622.3, "target_price": 23528.899999999998, "exit_time": "2026-05-12 14:00:11", "exit_price": 23526.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.6, "pnl_rupees": 5220.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 43, "entry_time": "2026-05-12 14:01:07", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23523.9, "sl_price": 23550.600000000002, "target_price": 23457.2, "exit_time": "2026-05-12 14:55:18", "exit_price": 23455.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.9, "pnl_rupees": 5167.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 44, "entry_time": "2026-05-12 14:57:53", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23449.0, "sl_price": 23475.7, "target_price": 23382.3, "exit_time": "2026-05-12 15:10:01", "exit_price": 23412.0, "exit_reason": "EOD_CLOSE", "pnl_points": 37.0, "pnl_rupees": 2775.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 45, "entry_time": "2026-05-13 09:16:25", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23500.0, "sl_price": 23526.7, "target_price": 23433.3, "exit_time": "2026-05-13 09:21:32", "exit_price": 23431.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.0, "pnl_rupees": 5175.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 46, "entry_time": "2026-05-13 09:38:31", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23349.3, "sl_price": 23376.0, "target_price": 23282.6, "exit_time": "2026-05-13 09:45:35", "exit_price": 23376.1, "exit_reason": "SL_HIT", "pnl_points": -26.8, "pnl_rupees": -2010.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 47, "entry_time": "2026-05-13 10:23:48", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23490.0, "sl_price": 23463.3, "target_price": 23556.7, "exit_time": "2026-05-13 10:43:58", "exit_price": 23505.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 15.0, "pnl_rupees": 1125.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 48, "entry_time": "2026-05-13 10:43:59", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23500.0, "sl_price": 23526.7, "target_price": 23433.3, "exit_time": "2026-05-13 10:58:42", "exit_price": 23431.9, "exit_reason": "TARGET_HIT", "pnl_points": 68.1, "pnl_rupees": 5107.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 49, "entry_time": "2026-05-13 12:01:02", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23511.1, "sl_price": 23537.8, "target_price": 23444.399999999998, "exit_time": "2026-05-13 12:14:21", "exit_price": 23538.3, "exit_reason": "SL_HIT", "pnl_points": -27.2, "pnl_rupees": -2040.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 50, "entry_time": "2026-05-13 13:33:35", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23570.0, "sl_price": 23596.7, "target_price": 23503.3, "exit_time": "2026-05-13 13:55:58", "exit_price": 23503.1, "exit_reason": "TARGET_HIT", "pnl_points": 66.9, "pnl_rupees": 5017.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 51, "entry_time": "2026-05-13 14:54:38", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23507.5, "sl_price": 23480.8, "target_price": 23574.2, "exit_time": "2026-05-13 15:00:08", "exit_price": 23480.0, "exit_reason": "SL_HIT", "pnl_points": -27.5, "pnl_rupees": -2062.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 52, "entry_time": "2026-05-14 10:45:55", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23496.3, "sl_price": 23469.6, "target_price": 23563.0, "exit_time": "2026-05-14 10:48:43", "exit_price": 23469.3, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 53, "entry_time": "2026-05-14 11:29:30", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23600.0, "sl_price": 23573.3, "target_price": 23666.7, "exit_time": "2026-05-14 11:41:57", "exit_price": 23670.0, "exit_reason": "TARGET_HIT", "pnl_points": 70.0, "pnl_rupees": 5250.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 54, "entry_time": "2026-05-14 11:44:12", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23672.1, "sl_price": 23645.399999999998, "target_price": 23738.8, "exit_time": "2026-05-14 12:05:23", "exit_price": 23661.2, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -10.9, "pnl_rupees": -817.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 55, "entry_time": "2026-05-14 12:05:24", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23666.4, "sl_price": 23693.100000000002, "target_price": 23599.7, "exit_time": "2026-05-14 12:15:15", "exit_price": 23694.0, "exit_reason": "SL_HIT", "pnl_points": -27.6, "pnl_rupees": -2070.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 56, "entry_time": "2026-05-15 09:42:20", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23790.0, "sl_price": 23816.7, "target_price": 23723.3, "exit_time": "2026-05-15 09:44:23", "exit_price": 23811.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -21.0, "pnl_rupees": -1575.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 57, "entry_time": "2026-05-15 09:44:24", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23811.9, "sl_price": 23785.2, "target_price": 23878.600000000002, "exit_time": "2026-05-15 10:09:40", "exit_price": 23785.0, "exit_reason": "SL_HIT", "pnl_points": -26.9, "pnl_rupees": -2017.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 58, "entry_time": "2026-05-15 10:17:01", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23802.1, "sl_price": 23828.8, "target_price": 23735.399999999998, "exit_time": "2026-05-15 10:26:14", "exit_price": 23829.0, "exit_reason": "SL_HIT", "pnl_points": -26.9, "pnl_rupees": -2017.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 59, "entry_time": "2026-05-18 09:50:52", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23370.0, "sl_price": 23396.7, "target_price": 23303.3, "exit_time": "2026-05-18 10:16:45", "exit_price": 23398.0, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 60, "entry_time": "2026-05-18 10:19:09", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23410.0, "sl_price": 23436.7, "target_price": 23343.3, "exit_time": "2026-05-18 10:35:12", "exit_price": 23440.0, "exit_reason": "SL_HIT", "pnl_points": -30.0, "pnl_rupees": -2250.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 61, "entry_time": "2026-05-18 10:35:13", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23430.0, "sl_price": 23456.7, "target_price": 23363.3, "exit_time": "2026-05-18 10:55:44", "exit_price": 23458.8, "exit_reason": "SL_HIT", "pnl_points": -28.8, "pnl_rupees": -2160.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 62, "entry_time": "2026-05-19 09:28:15", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23745.0, "sl_price": 23718.3, "target_price": 23811.7, "exit_time": "2026-05-19 09:33:07", "exit_price": 23717.0, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 63, "entry_time": "2026-05-19 10:03:09", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23720.4, "sl_price": 23747.100000000002, "target_price": 23653.7, "exit_time": "2026-05-19 10:11:43", "exit_price": 23747.9, "exit_reason": "SL_HIT", "pnl_points": -27.5, "pnl_rupees": -2062.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 64, "entry_time": "2026-05-19 10:14:06", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23755.0, "sl_price": 23728.3, "target_price": 23821.7, "exit_time": "2026-05-19 10:18:20", "exit_price": 23725.0, "exit_reason": "SL_HIT", "pnl_points": -30.0, "pnl_rupees": -2250.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 65, "entry_time": "2026-05-20 10:28:49", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23509.0, "sl_price": 23535.7, "target_price": 23442.3, "exit_time": "2026-05-20 10:31:36", "exit_price": 23539.5, "exit_reason": "SL_HIT", "pnl_points": -30.5, "pnl_rupees": -2287.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 66, "entry_time": "2026-05-20 10:32:07", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23539.4, "sl_price": 23566.100000000002, "target_price": 23472.7, "exit_time": "2026-05-20 10:32:47", "exit_price": 23567.4, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 67, "entry_time": "2026-05-20 10:41:38", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23557.0, "sl_price": 23530.3, "target_price": 23623.7, "exit_time": "2026-05-20 10:45:20", "exit_price": 23530.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 68, "entry_time": "2026-05-21 10:06:18", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23764.9, "sl_price": 23791.600000000002, "target_price": 23698.2, "exit_time": "2026-05-21 11:00:12", "exit_price": 23695.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.9, "pnl_rupees": 5242.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 69, "entry_time": "2026-05-21 11:10:57", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23693.2, "sl_price": 23719.9, "target_price": 23626.5, "exit_time": "2026-05-21 11:18:00", "exit_price": 23620.0, "exit_reason": "TARGET_HIT", "pnl_points": 73.2, "pnl_rupees": 5490.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 70, "entry_time": "2026-05-21 14:10:14", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23620.0, "sl_price": 23646.7, "target_price": 23553.3, "exit_time": "2026-05-21 14:26:10", "exit_price": 23647.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 71, "entry_time": "2026-05-22 09:27:50", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23750.6, "sl_price": 23723.899999999998, "target_price": 23817.3, "exit_time": "2026-05-22 11:12:06", "exit_price": 23789.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 38.4, "pnl_rupees": 2880.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 72, "entry_time": "2026-05-22 11:12:06", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23783.0, "sl_price": 23809.7, "target_price": 23716.3, "exit_time": "2026-05-22 11:44:01", "exit_price": 23810.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 73, "entry_time": "2026-05-22 12:01:18", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23810.9, "sl_price": 23784.2, "target_price": 23877.600000000002, "exit_time": "2026-05-22 12:21:49", "exit_price": 23799.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -11.9, "pnl_rupees": -892.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 74, "entry_time": "2026-05-22 12:21:52", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23795.7, "sl_price": 23822.4, "target_price": 23729.0, "exit_time": "2026-05-22 12:48:51", "exit_price": 23823.0, "exit_reason": "SL_HIT", "pnl_points": -27.3, "pnl_rupees": -2047.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 75, "entry_time": "2026-05-25 09:43:36", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23946.5, "sl_price": 23973.2, "target_price": 23879.8, "exit_time": "2026-05-25 10:09:50", "exit_price": 23974.0, "exit_reason": "SL_HIT", "pnl_points": -27.5, "pnl_rupees": -2062.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 76, "entry_time": "2026-05-25 10:26:20", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23975.5, "sl_price": 23948.8, "target_price": 24042.2, "exit_time": "2026-05-25 10:32:08", "exit_price": 23988.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 12.5, "pnl_rupees": 937.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 77, "entry_time": "2026-05-25 10:32:09", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23988.0, "sl_price": 24014.7, "target_price": 23921.3, "exit_time": "2026-05-25 10:49:19", "exit_price": 24005.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -17.0, "pnl_rupees": -1275.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 78, "entry_time": "2026-05-25 10:49:19", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24006.9, "sl_price": 23980.2, "target_price": 24073.600000000002, "exit_time": "2026-05-25 11:02:40", "exit_price": 23979.0, "exit_reason": "SL_HIT", "pnl_points": -27.9, "pnl_rupees": -2092.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 79, "entry_time": "2026-05-26 10:23:57", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24060.0, "sl_price": 24086.7, "target_price": 23993.3, "exit_time": "2026-05-26 11:05:30", "exit_price": 24070.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -10.0, "pnl_rupees": -750.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 80, "entry_time": "2026-05-26 11:05:31", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24074.0, "sl_price": 24047.3, "target_price": 24140.7, "exit_time": "2026-05-26 11:20:49", "exit_price": 24063.5, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -10.5, "pnl_rupees": -787.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 81, "entry_time": "2026-05-26 11:20:50", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24063.5, "sl_price": 24090.2, "target_price": 23996.8, "exit_time": "2026-05-26 12:45:53", "exit_price": 23993.9, "exit_reason": "TARGET_HIT", "pnl_points": 69.6, "pnl_rupees": 5220.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 82, "entry_time": "2026-05-26 12:50:16", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23995.0, "sl_price": 24021.7, "target_price": 23928.3, "exit_time": "2026-05-26 13:26:30", "exit_price": 23977.5, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 17.5, "pnl_rupees": 1312.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 83, "entry_time": "2026-05-26 13:26:31", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23976.0, "sl_price": 23949.3, "target_price": 24042.7, "exit_time": "2026-05-26 13:32:48", "exit_price": 23976.1, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 0.1, "pnl_rupees": 7.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 84, "entry_time": "2026-05-26 13:32:48", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23980.0, "sl_price": 24006.7, "target_price": 23913.3, "exit_time": "2026-05-26 14:04:14", "exit_price": 23911.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.0, "pnl_rupees": 5175.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 85, "entry_time": "2026-05-26 14:55:48", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23883.1, "sl_price": 23909.8, "target_price": 23816.399999999998, "exit_time": "2026-05-26 14:57:47", "exit_price": 23910.0, "exit_reason": "SL_HIT", "pnl_points": -26.9, "pnl_rupees": -2017.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 86, "entry_time": "2026-05-29 11:14:23", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24000.2, "sl_price": 23973.5, "target_price": 24066.9, "exit_time": "2026-05-29 11:14:25", "exit_price": 23913.0, "exit_reason": "SL_HIT", "pnl_points": -87.2, "pnl_rupees": -6540.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 87, "entry_time": "2026-05-29 13:07:26", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23910.0, "sl_price": 23936.7, "target_price": 23843.3, "exit_time": "2026-05-29 14:56:03", "exit_price": 23913.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -3.0, "pnl_rupees": -225.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 88, "entry_time": "2026-05-29 14:56:04", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23840.0, "sl_price": 23813.3, "target_price": 23906.7, "exit_time": "2026-05-29 14:56:05", "exit_price": 23913.0, "exit_reason": "TARGET_HIT", "pnl_points": 73.0, "pnl_rupees": 5475.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 89, "entry_time": "2026-05-29 15:04:06", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23727.4, "sl_price": 23754.100000000002, "target_price": 23660.7, "exit_time": "2026-05-29 15:04:07", "exit_price": 23913.0, "exit_reason": "SL_HIT", "pnl_points": -185.6, "pnl_rupees": -13920.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 90, "entry_time": "2026-06-01 10:57:03", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23661.5, "sl_price": 23634.8, "target_price": 23728.2, "exit_time": "2026-06-01 11:29:52", "exit_price": 23632.0, "exit_reason": "SL_HIT", "pnl_points": -29.5, "pnl_rupees": -2212.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 91, "entry_time": "2026-06-01 11:36:17", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23624.9, "sl_price": 23651.600000000002, "target_price": 23558.2, "exit_time": "2026-06-01 11:59:27", "exit_price": 23558.0, "exit_reason": "TARGET_HIT", "pnl_points": 66.9, "pnl_rupees": 5017.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 92, "entry_time": "2026-06-01 12:03:47", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23560.0, "sl_price": 23586.7, "target_price": 23493.3, "exit_time": "2026-06-01 12:14:22", "exit_price": 23587.7, "exit_reason": "SL_HIT", "pnl_points": -27.7, "pnl_rupees": -2077.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 93, "entry_time": "2026-06-01 12:17:34", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23578.5, "sl_price": 23551.8, "target_price": 23645.2, "exit_time": "2026-06-01 12:34:30", "exit_price": 23570.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -8.5, "pnl_rupees": -637.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 94, "entry_time": "2026-06-01 12:34:32", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23571.0, "sl_price": 23597.7, "target_price": 23504.3, "exit_time": "2026-06-01 12:43:05", "exit_price": 23570.5, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 0.5, "pnl_rupees": 37.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 95, "entry_time": "2026-06-01 12:43:06", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23570.5, "sl_price": 23543.8, "target_price": 23637.2, "exit_time": "2026-06-01 13:08:10", "exit_price": 23543.5, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BULLISH"}];
-        const monthlyData = {"2026-04": {"total_trades": 15, "wins": 5, "losses": 10, "win_rate": 33.33333333333333, "total_pnl": 765.0, "total_points": 10.200000000000003}, "2026-05": {"total_trades": 74, "wins": 27, "losses": 47, "win_rate": 36.486486486486484, "total_pnl": 3525.0, "total_points": 47.00000000000003}, "2026-06": {"total_trades": 6, "wins": 2, "losses": 4, "win_rate": 33.33333333333333, "total_pnl": -1897.5, "total_points": -25.299999999999994}};
-        let currentFilter = 'all';
-        
-        // Populate month selector
-        function populateMonthSelector() {
-            const select = document.getElementById('monthSelect');
-            const months = Object.keys(monthlyData).sort();
-            
-            months.forEach(month => {
-                const option = document.createElement('option');
-                option.value = month;
-                // Format as "April 2026", "May 2026", etc.
-                const date = new Date(month + '-01');
-                const monthName = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-                option.textContent = monthName;
-                select.appendChild(option);
-            });
-        }
-        
-        function filterByMonth() {
-            currentFilter = document.getElementById('monthSelect').value;
-            
-            if (currentFilter === 'all') {
-                updateStats(allTrades);
-                updateTable(allTrades);
-                document.getElementById('tableTitle').textContent = '📅 Trade History - All Time';
-            } else {
-                // Filter trades by selected month
-                const monthTrades = allTrades.filter(t => t.entry_time.startsWith(currentFilter));
-                updateStats(monthTrades);
-                updateTable(monthTrades);
-                const date = new Date(currentFilter + '-01');
-                const monthName = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-                document.getElementById('tableTitle').textContent = `📅 Trade History - ${monthName}`;
-            }
-        }
-        
-        function updateStats(trades) {
-            const wins = trades.filter(t => t.pnl_rupees > 0);
-            const losses = trades.filter(t => t.pnl_rupees <= 0);
-            const totalPnl = trades.reduce((sum, t) => sum + t.pnl_rupees, 0);
-            const totalPoints = trades.reduce((sum, t) => sum + t.pnl_points, 0);
-            const winRate = trades.length > 0 ? (wins.length / trades.length * 100) : 0;
-            const avgWin = wins.length > 0 ? wins.reduce((sum, t) => sum + t.pnl_rupees, 0) / wins.length : 0;
-            const avgLoss = losses.length > 0 ? losses.reduce((sum, t) => sum + t.pnl_rupees, 0) / losses.length : 0;
-            const grossProfit = wins.reduce((sum, t) => sum + t.pnl_rupees, 0);
-            const grossLoss = Math.abs(losses.reduce((sum, t) => sum + t.pnl_rupees, 0));
-            const profitFactor = grossLoss > 0 ? grossProfit / grossLoss : 0;
-            
-            document.getElementById('totalTrades').textContent = trades.length;
-            document.getElementById('netPnl').textContent = '₹' + totalPnl.toFixed(2);
-            document.getElementById('netPnl').className = 'value ' + (totalPnl > 0 ? 'positive' : 'negative');
-            document.getElementById('netPoints').textContent = (totalPoints > 0 ? '+' : '') + totalPoints.toFixed(1) + ' points';
-            document.getElementById('winRate').textContent = winRate.toFixed(2) + '%';
-            document.getElementById('winLoss').textContent = wins.length + ' wins / ' + losses.length + ' losses';
-            document.getElementById('avgWin').textContent = '₹' + avgWin.toFixed(2);
-            document.getElementById('avgLoss').textContent = '₹' + avgLoss.toFixed(2);
-            document.getElementById('profitFactor').textContent = profitFactor.toFixed(2);
-            document.getElementById('profitFactor').className = 'value ' + (profitFactor > 1 ? 'positive' : 'negative');
-        }
-        
-        function updateTable(trades) {
-            const tbody = document.getElementById('tradesTable');
-            tbody.innerHTML = '';
-            
-            if (trades.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; color:#95a5a6;">No trades in this period</td></tr>';
-                return;
-            }
-            
-            // Sort by ID descending (most recent first)
-            const sortedTrades = [...trades].sort((a, b) => b.id - a.id);
-            
-            sortedTrades.forEach(trade => {
-                const sideBadge = trade.side === 'BUY' ? 'badge-buy' : 'badge-sell';
-                const exitBadge = trade.exit_reason === 'TARGET_HIT' ? 'badge-success' :
-                                 trade.exit_reason === 'SL_HIT' ? 'badge-danger' :
-                                 trade.exit_reason === 'COUNTER_VIEW_FLIP' ? 'badge-warning' : 'badge-info';
-                const rowClass = trade.pnl_rupees > 0 ? 'win-row' : 'loss-row';
-                const pnlClass = trade.pnl_rupees > 0 ? 'positive' : 'negative';
-                
-                const row = `
-                    <tr class="${rowClass}">
-                        <td><strong>#${trade.id}</strong></td>
-                        <td>${trade.entry_time}</td>
-                        <td><span class="badge ${sideBadge}">${trade.side}</span></td>
-                        <td>₹${trade.entry_price.toFixed(2)}</td>
-                        <td>₹${trade.exit_price.toFixed(2)}</td>
-                        <td>${trade.exit_time}</td>
-                        <td><span class="badge ${exitBadge}">${trade.exit_reason.replace(/_/g, ' ')}</span></td>
-                        <td class="${pnlClass}"><strong>₹${trade.pnl_rupees.toFixed(2)}</strong></td>
-                        <td class="${pnlClass}">${trade.pnl_points > 0 ? '+' : ''}${trade.pnl_points.toFixed(2)}</td>
-                        <td>${trade.checklist_score}/4</td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        }
-        
-        // Initialize
-        populateMonthSelector();
+
+    <div class="stats" id="statsContainer">
+      <div class="stat">
+        <h3>Total trades</h3>
+        <div class="value neutral" id="totalTrades">113</div>
+        <div class="sub">Closed positions</div>
+      </div>
+      <div class="stat">
+        <h3>Net P&amp;L</h3>
+        <div class="value positive" id="netPnl">₹9,562.50</div>
+        <div class="sub" id="netPoints">+127.5 pts</div>
+      </div>
+      <div class="stat">
+        <h3>Win rate</h3>
+        <div class="value neutral" id="winRate">38.1%</div>
+        <div class="sub" id="winLoss">43W / 70L</div>
+      </div>
+      <div class="stat">
+        <h3>Avg win</h3>
+        <div class="value positive" id="avgWin">₹3,896.51</div>
+        <div class="sub">Per winner</div>
+      </div>
+      <div class="stat">
+        <h3>Avg loss</h3>
+        <div class="value negative" id="avgLoss">₹-2,256.96</div>
+        <div class="sub">Per loser</div>
+      </div>
+      <div class="stat">
+        <h3>Profit factor</h3>
+        <div class="value positive" id="profitFactor">1.06</div>
+        <div class="sub">Gross ÷ loss</div>
+      </div>
+      <div class="stat">
+        <h3>Gross profit</h3>
+        <div class="value positive" id="grossProfit">₹167,550.00</div>
+        <div class="sub">All wins</div>
+      </div>
+      <div class="stat">
+        <h3>Best trade</h3>
+        <div class="value positive" id="bestTrade">₹5,700.00</div>
+        <div class="sub">#26</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 id="tableTitle">Trade history — All time</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Entry</th>
+              <th>Side</th>
+              <th>Entry ₹</th>
+              <th>Exit ₹</th>
+              <th>Exit</th>
+              <th>Reason</th>
+              <th>P&amp;L</th>
+              <th>Pts</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="tradesTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="footer">Algo Fyers · Paper trading · data/paper_trades.db</footer>
+  </div>
+
+  <script>
+    const allTrades = [{"id": 1, "entry_time": "2026-04-16 11:45:14", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 24256.0, "sl_price": 24282.7, "target_price": 24189.3, "exit_time": "2026-04-16 12:00:13", "exit_price": 24188.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.0, "pnl_rupees": 5100.0, "checklist_score": 6, "checklist_bias": "BEARISH"}, {"id": 2, "entry_time": "2026-04-16 12:06:18", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 24170.0, "sl_price": 24196.7, "target_price": 24103.3, "exit_time": "2026-04-16 14:30:00", "exit_price": 24201.3, "exit_reason": "SL_HIT", "pnl_points": -31.3, "pnl_rupees": -2347.5, "checklist_score": 6, "checklist_bias": "BEARISH"}, {"id": 3, "entry_time": "2026-04-17 09:41:13", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 24214.0, "sl_price": 24240.7, "target_price": 24147.3, "exit_time": "2026-04-17 10:03:42", "exit_price": 24242.0, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 6, "checklist_bias": "BEARISH"}, {"id": 4, "entry_time": "2026-04-24 10:23:53", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 23979.2, "sl_price": 24005.9, "target_price": 23912.5, "exit_time": "2026-04-24 11:26:33", "exit_price": 23965.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 14.2, "pnl_rupees": 1065.0, "checklist_score": 5, "checklist_bias": "BEARISH"}, {"id": 5, "entry_time": "2026-04-24 11:26:34", "side": "BUY", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 23969.0, "sl_price": 23942.3, "target_price": 24035.7, "exit_time": "2026-04-24 11:47:35", "exit_price": 23952.2, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -16.8, "pnl_rupees": -1260.0, "checklist_score": 5, "checklist_bias": "BULLISH"}, {"id": 6, "entry_time": "2026-04-24 11:47:36", "side": "SELL", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 23945.0, "sl_price": 23971.7, "target_price": 23878.3, "exit_time": "2026-04-24 13:13:16", "exit_price": 23878.2, "exit_reason": "TARGET_HIT", "pnl_points": 66.8, "pnl_rupees": 5010.0, "checklist_score": 5, "checklist_bias": "BEARISH"}, {"id": 7, "entry_time": "2026-04-29 10:02:06", "side": "BUY", "instrument": "NSE:NIFTY26APRFUT", "entry_price": 24315.0, "sl_price": 24288.3, "target_price": 24381.7, "exit_time": "2026-04-29 10:41:06", "exit_price": 24315.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 0.0, "pnl_rupees": 0.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 8, "entry_time": "2026-04-29 11:34:38", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24400.1, "sl_price": 24426.8, "target_price": 24333.399999999998, "exit_time": "2026-04-29 12:11:13", "exit_price": 24430.0, "exit_reason": "SL_HIT", "pnl_points": -29.9, "pnl_rupees": -2242.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 9, "entry_time": "2026-04-29 13:24:19", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24410.0, "sl_price": 24436.7, "target_price": 24343.3, "exit_time": "2026-04-29 14:00:03", "exit_price": 24343.0, "exit_reason": "TARGET_HIT", "pnl_points": 67.0, "pnl_rupees": 5025.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 10, "entry_time": "2026-04-30 09:28:24", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23935.0, "sl_price": 23961.7, "target_price": 23868.3, "exit_time": "2026-04-30 09:32:38", "exit_price": 23962.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 11, "entry_time": "2026-04-30 10:01:57", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23907.0, "sl_price": 23933.7, "target_price": 23840.3, "exit_time": "2026-04-30 12:06:38", "exit_price": 23934.9, "exit_reason": "SL_HIT", "pnl_points": -27.9, "pnl_rupees": -2092.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 12, "entry_time": "2026-04-30 12:26:55", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23988.0, "sl_price": 23961.3, "target_price": 24054.7, "exit_time": "2026-04-30 12:37:30", "exit_price": 23961.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 13, "entry_time": "2026-04-30 12:45:48", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23978.0, "sl_price": 23951.3, "target_price": 24044.7, "exit_time": "2026-04-30 13:13:19", "exit_price": 24019.8, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 41.8, "pnl_rupees": 3135.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 14, "entry_time": "2026-04-30 13:13:19", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24019.8, "sl_price": 24046.5, "target_price": 23953.1, "exit_time": "2026-04-30 13:27:14", "exit_price": 24048.0, "exit_reason": "SL_HIT", "pnl_points": -28.2, "pnl_rupees": -2115.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 15, "entry_time": "2026-04-30 14:06:32", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24078.5, "sl_price": 24105.2, "target_price": 24011.8, "exit_time": "2026-04-30 14:09:54", "exit_price": 24110.0, "exit_reason": "SL_HIT", "pnl_points": -31.5, "pnl_rupees": -2362.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 16, "entry_time": "2026-05-04 09:20:25", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24297.1, "sl_price": 24323.8, "target_price": 24230.399999999998, "exit_time": "2026-05-04 09:30:14", "exit_price": 24324.7, "exit_reason": "SL_HIT", "pnl_points": -27.6, "pnl_rupees": -2070.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 17, "entry_time": "2026-05-04 09:36:34", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24343.0, "sl_price": 24369.7, "target_price": 24276.3, "exit_time": "2026-05-04 09:41:28", "exit_price": 24369.8, "exit_reason": "SL_HIT", "pnl_points": -26.8, "pnl_rupees": -2010.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 18, "entry_time": "2026-05-04 09:44:06", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24368.5, "sl_price": 24341.8, "target_price": 24435.2, "exit_time": "2026-05-04 09:51:40", "exit_price": 24341.1, "exit_reason": "SL_HIT", "pnl_points": -27.4, "pnl_rupees": -2055.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 19, "entry_time": "2026-05-05 10:08:53", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24048.4, "sl_price": 24075.100000000002, "target_price": 23981.7, "exit_time": "2026-05-05 10:35:57", "exit_price": 23981.0, "exit_reason": "TARGET_HIT", "pnl_points": 67.4, "pnl_rupees": 5055.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 20, "entry_time": "2026-05-05 10:40:14", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23993.0, "sl_price": 24019.7, "target_price": 23926.3, "exit_time": "2026-05-05 12:21:02", "exit_price": 24015.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -22.0, "pnl_rupees": -1650.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 21, "entry_time": "2026-05-05 12:21:03", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24014.0, "sl_price": 23987.3, "target_price": 24080.7, "exit_time": "2026-05-05 12:32:45", "exit_price": 23986.9, "exit_reason": "SL_HIT", "pnl_points": -27.1, "pnl_rupees": -2032.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 22, "entry_time": "2026-05-06 10:12:03", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24200.0, "sl_price": 24226.7, "target_price": 24133.3, "exit_time": "2026-05-06 10:21:03", "exit_price": 24228.0, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 23, "entry_time": "2026-05-06 10:51:58", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24190.1, "sl_price": 24163.399999999998, "target_price": 24256.8, "exit_time": "2026-05-06 11:03:07", "exit_price": 24161.0, "exit_reason": "SL_HIT", "pnl_points": -29.1, "pnl_rupees": -2182.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 24, "entry_time": "2026-05-06 11:19:04", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24179.0, "sl_price": 24205.7, "target_price": 24112.3, "exit_time": "2026-05-06 11:39:33", "exit_price": 24146.9, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 32.1, "pnl_rupees": 2407.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 25, "entry_time": "2026-05-06 11:39:34", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24141.0, "sl_price": 24114.3, "target_price": 24207.7, "exit_time": "2026-05-06 11:59:40", "exit_price": 24181.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 40.0, "pnl_rupees": 3000.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 26, "entry_time": "2026-05-06 11:59:40", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24181.0, "sl_price": 24207.7, "target_price": 24114.3, "exit_time": "2026-05-06 12:22:55", "exit_price": 24105.0, "exit_reason": "TARGET_HIT", "pnl_points": 76.0, "pnl_rupees": 5700.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 27, "entry_time": "2026-05-06 12:38:24", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24106.5, "sl_price": 24079.8, "target_price": 24173.2, "exit_time": "2026-05-06 12:44:06", "exit_price": 24075.0, "exit_reason": "SL_HIT", "pnl_points": -31.5, "pnl_rupees": -2362.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 28, "entry_time": "2026-05-07 09:23:16", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24349.1, "sl_price": 24375.8, "target_price": 24282.399999999998, "exit_time": "2026-05-07 09:23:49", "exit_price": 24379.6, "exit_reason": "SL_HIT", "pnl_points": -30.5, "pnl_rupees": -2287.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 29, "entry_time": "2026-05-07 09:40:02", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24399.4, "sl_price": 24426.100000000002, "target_price": 24332.7, "exit_time": "2026-05-07 09:42:01", "exit_price": 24429.0, "exit_reason": "SL_HIT", "pnl_points": -29.6, "pnl_rupees": -2220.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 30, "entry_time": "2026-05-07 10:17:20", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24370.5, "sl_price": 24397.2, "target_price": 24303.8, "exit_time": "2026-05-07 10:25:50", "exit_price": 24400.0, "exit_reason": "SL_HIT", "pnl_points": -29.5, "pnl_rupees": -2212.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 31, "entry_time": "2026-05-08 09:47:23", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24220.0, "sl_price": 24246.7, "target_price": 24153.3, "exit_time": "2026-05-08 09:58:27", "exit_price": 24246.8, "exit_reason": "SL_HIT", "pnl_points": -26.8, "pnl_rupees": -2010.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 32, "entry_time": "2026-05-08 10:26:35", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24282.4, "sl_price": 24255.7, "target_price": 24349.100000000002, "exit_time": "2026-05-08 10:51:38", "exit_price": 24255.0, "exit_reason": "SL_HIT", "pnl_points": -27.4, "pnl_rupees": -2055.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 33, "entry_time": "2026-05-08 11:07:41", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24285.0, "sl_price": 24311.7, "target_price": 24218.3, "exit_time": "2026-05-08 12:10:04", "exit_price": 24217.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.0, "pnl_rupees": 5100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 34, "entry_time": "2026-05-08 13:48:55", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24215.0, "sl_price": 24241.7, "target_price": 24148.3, "exit_time": "2026-05-08 14:13:24", "exit_price": 24195.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 20.0, "pnl_rupees": 1500.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 35, "entry_time": "2026-05-08 14:13:25", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24202.4, "sl_price": 24175.7, "target_price": 24269.100000000002, "exit_time": "2026-05-08 14:39:47", "exit_price": 24269.9, "exit_reason": "TARGET_HIT", "pnl_points": 67.5, "pnl_rupees": 5062.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 36, "entry_time": "2026-05-11 09:39:16", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23911.5, "sl_price": 23938.2, "target_price": 23844.8, "exit_time": "2026-05-11 11:07:16", "exit_price": 23941.0, "exit_reason": "SL_HIT", "pnl_points": -29.5, "pnl_rupees": -2212.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 37, "entry_time": "2026-05-11 11:21:09", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23965.0, "sl_price": 23938.3, "target_price": 24031.7, "exit_time": "2026-05-11 12:38:29", "exit_price": 23934.1, "exit_reason": "SL_HIT", "pnl_points": -30.9, "pnl_rupees": -2317.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 38, "entry_time": "2026-05-11 14:13:45", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23980.8, "sl_price": 24007.5, "target_price": 23914.1, "exit_time": "2026-05-11 14:49:25", "exit_price": 23912.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.8, "pnl_rupees": 5160.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 39, "entry_time": "2026-05-11 14:51:46", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23926.3, "sl_price": 23953.0, "target_price": 23859.6, "exit_time": "2026-05-11 15:05:55", "exit_price": 23858.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.3, "pnl_rupees": 5122.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 40, "entry_time": "2026-05-12 10:02:48", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23649.8, "sl_price": 23676.5, "target_price": 23583.1, "exit_time": "2026-05-12 10:12:10", "exit_price": 23676.5, "exit_reason": "SL_HIT", "pnl_points": -26.7, "pnl_rupees": -2002.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 41, "entry_time": "2026-05-12 10:36:31", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23651.0, "sl_price": 23677.7, "target_price": 23584.3, "exit_time": "2026-05-12 12:09:08", "exit_price": 23581.0, "exit_reason": "TARGET_HIT", "pnl_points": 70.0, "pnl_rupees": 5250.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 42, "entry_time": "2026-05-12 12:17:01", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23595.6, "sl_price": 23622.3, "target_price": 23528.899999999998, "exit_time": "2026-05-12 14:00:11", "exit_price": 23526.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.6, "pnl_rupees": 5220.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 43, "entry_time": "2026-05-12 14:01:07", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23523.9, "sl_price": 23550.600000000002, "target_price": 23457.2, "exit_time": "2026-05-12 14:55:18", "exit_price": 23455.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.9, "pnl_rupees": 5167.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 44, "entry_time": "2026-05-12 14:57:53", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23449.0, "sl_price": 23475.7, "target_price": 23382.3, "exit_time": "2026-05-12 15:10:01", "exit_price": 23412.0, "exit_reason": "EOD_CLOSE", "pnl_points": 37.0, "pnl_rupees": 2775.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 45, "entry_time": "2026-05-13 09:16:25", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23500.0, "sl_price": 23526.7, "target_price": 23433.3, "exit_time": "2026-05-13 09:21:32", "exit_price": 23431.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.0, "pnl_rupees": 5175.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 46, "entry_time": "2026-05-13 09:38:31", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23349.3, "sl_price": 23376.0, "target_price": 23282.6, "exit_time": "2026-05-13 09:45:35", "exit_price": 23376.1, "exit_reason": "SL_HIT", "pnl_points": -26.8, "pnl_rupees": -2010.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 47, "entry_time": "2026-05-13 10:23:48", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23490.0, "sl_price": 23463.3, "target_price": 23556.7, "exit_time": "2026-05-13 10:43:58", "exit_price": 23505.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 15.0, "pnl_rupees": 1125.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 48, "entry_time": "2026-05-13 10:43:59", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23500.0, "sl_price": 23526.7, "target_price": 23433.3, "exit_time": "2026-05-13 10:58:42", "exit_price": 23431.9, "exit_reason": "TARGET_HIT", "pnl_points": 68.1, "pnl_rupees": 5107.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 49, "entry_time": "2026-05-13 12:01:02", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23511.1, "sl_price": 23537.8, "target_price": 23444.399999999998, "exit_time": "2026-05-13 12:14:21", "exit_price": 23538.3, "exit_reason": "SL_HIT", "pnl_points": -27.2, "pnl_rupees": -2040.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 50, "entry_time": "2026-05-13 13:33:35", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23570.0, "sl_price": 23596.7, "target_price": 23503.3, "exit_time": "2026-05-13 13:55:58", "exit_price": 23503.1, "exit_reason": "TARGET_HIT", "pnl_points": 66.9, "pnl_rupees": 5017.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 51, "entry_time": "2026-05-13 14:54:38", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23507.5, "sl_price": 23480.8, "target_price": 23574.2, "exit_time": "2026-05-13 15:00:08", "exit_price": 23480.0, "exit_reason": "SL_HIT", "pnl_points": -27.5, "pnl_rupees": -2062.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 52, "entry_time": "2026-05-14 10:45:55", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23496.3, "sl_price": 23469.6, "target_price": 23563.0, "exit_time": "2026-05-14 10:48:43", "exit_price": 23469.3, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 53, "entry_time": "2026-05-14 11:29:30", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23600.0, "sl_price": 23573.3, "target_price": 23666.7, "exit_time": "2026-05-14 11:41:57", "exit_price": 23670.0, "exit_reason": "TARGET_HIT", "pnl_points": 70.0, "pnl_rupees": 5250.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 54, "entry_time": "2026-05-14 11:44:12", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23672.1, "sl_price": 23645.399999999998, "target_price": 23738.8, "exit_time": "2026-05-14 12:05:23", "exit_price": 23661.2, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -10.9, "pnl_rupees": -817.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 55, "entry_time": "2026-05-14 12:05:24", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23666.4, "sl_price": 23693.100000000002, "target_price": 23599.7, "exit_time": "2026-05-14 12:15:15", "exit_price": 23694.0, "exit_reason": "SL_HIT", "pnl_points": -27.6, "pnl_rupees": -2070.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 56, "entry_time": "2026-05-15 09:42:20", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23790.0, "sl_price": 23816.7, "target_price": 23723.3, "exit_time": "2026-05-15 09:44:23", "exit_price": 23811.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -21.0, "pnl_rupees": -1575.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 57, "entry_time": "2026-05-15 09:44:24", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23811.9, "sl_price": 23785.2, "target_price": 23878.600000000002, "exit_time": "2026-05-15 10:09:40", "exit_price": 23785.0, "exit_reason": "SL_HIT", "pnl_points": -26.9, "pnl_rupees": -2017.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 58, "entry_time": "2026-05-15 10:17:01", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23802.1, "sl_price": 23828.8, "target_price": 23735.399999999998, "exit_time": "2026-05-15 10:26:14", "exit_price": 23829.0, "exit_reason": "SL_HIT", "pnl_points": -26.9, "pnl_rupees": -2017.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 59, "entry_time": "2026-05-18 09:50:52", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23370.0, "sl_price": 23396.7, "target_price": 23303.3, "exit_time": "2026-05-18 10:16:45", "exit_price": 23398.0, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 60, "entry_time": "2026-05-18 10:19:09", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23410.0, "sl_price": 23436.7, "target_price": 23343.3, "exit_time": "2026-05-18 10:35:12", "exit_price": 23440.0, "exit_reason": "SL_HIT", "pnl_points": -30.0, "pnl_rupees": -2250.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 61, "entry_time": "2026-05-18 10:35:13", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23430.0, "sl_price": 23456.7, "target_price": 23363.3, "exit_time": "2026-05-18 10:55:44", "exit_price": 23458.8, "exit_reason": "SL_HIT", "pnl_points": -28.8, "pnl_rupees": -2160.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 62, "entry_time": "2026-05-19 09:28:15", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23745.0, "sl_price": 23718.3, "target_price": 23811.7, "exit_time": "2026-05-19 09:33:07", "exit_price": 23717.0, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 63, "entry_time": "2026-05-19 10:03:09", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23720.4, "sl_price": 23747.100000000002, "target_price": 23653.7, "exit_time": "2026-05-19 10:11:43", "exit_price": 23747.9, "exit_reason": "SL_HIT", "pnl_points": -27.5, "pnl_rupees": -2062.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 64, "entry_time": "2026-05-19 10:14:06", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23755.0, "sl_price": 23728.3, "target_price": 23821.7, "exit_time": "2026-05-19 10:18:20", "exit_price": 23725.0, "exit_reason": "SL_HIT", "pnl_points": -30.0, "pnl_rupees": -2250.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 65, "entry_time": "2026-05-20 10:28:49", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23509.0, "sl_price": 23535.7, "target_price": 23442.3, "exit_time": "2026-05-20 10:31:36", "exit_price": 23539.5, "exit_reason": "SL_HIT", "pnl_points": -30.5, "pnl_rupees": -2287.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 66, "entry_time": "2026-05-20 10:32:07", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23539.4, "sl_price": 23566.100000000002, "target_price": 23472.7, "exit_time": "2026-05-20 10:32:47", "exit_price": 23567.4, "exit_reason": "SL_HIT", "pnl_points": -28.0, "pnl_rupees": -2100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 67, "entry_time": "2026-05-20 10:41:38", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23557.0, "sl_price": 23530.3, "target_price": 23623.7, "exit_time": "2026-05-20 10:45:20", "exit_price": 23530.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 68, "entry_time": "2026-05-21 10:06:18", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23764.9, "sl_price": 23791.600000000002, "target_price": 23698.2, "exit_time": "2026-05-21 11:00:12", "exit_price": 23695.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.9, "pnl_rupees": 5242.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 69, "entry_time": "2026-05-21 11:10:57", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23693.2, "sl_price": 23719.9, "target_price": 23626.5, "exit_time": "2026-05-21 11:18:00", "exit_price": 23620.0, "exit_reason": "TARGET_HIT", "pnl_points": 73.2, "pnl_rupees": 5490.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 70, "entry_time": "2026-05-21 14:10:14", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23620.0, "sl_price": 23646.7, "target_price": 23553.3, "exit_time": "2026-05-21 14:26:10", "exit_price": 23647.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 71, "entry_time": "2026-05-22 09:27:50", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23750.6, "sl_price": 23723.899999999998, "target_price": 23817.3, "exit_time": "2026-05-22 11:12:06", "exit_price": 23789.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 38.4, "pnl_rupees": 2880.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 72, "entry_time": "2026-05-22 11:12:06", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23783.0, "sl_price": 23809.7, "target_price": 23716.3, "exit_time": "2026-05-22 11:44:01", "exit_price": 23810.0, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 73, "entry_time": "2026-05-22 12:01:18", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23810.9, "sl_price": 23784.2, "target_price": 23877.600000000002, "exit_time": "2026-05-22 12:21:49", "exit_price": 23799.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -11.9, "pnl_rupees": -892.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 74, "entry_time": "2026-05-22 12:21:52", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23795.7, "sl_price": 23822.4, "target_price": 23729.0, "exit_time": "2026-05-22 12:48:51", "exit_price": 23823.0, "exit_reason": "SL_HIT", "pnl_points": -27.3, "pnl_rupees": -2047.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 75, "entry_time": "2026-05-25 09:43:36", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23946.5, "sl_price": 23973.2, "target_price": 23879.8, "exit_time": "2026-05-25 10:09:50", "exit_price": 23974.0, "exit_reason": "SL_HIT", "pnl_points": -27.5, "pnl_rupees": -2062.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 76, "entry_time": "2026-05-25 10:26:20", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23975.5, "sl_price": 23948.8, "target_price": 24042.2, "exit_time": "2026-05-25 10:32:08", "exit_price": 23988.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 12.5, "pnl_rupees": 937.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 77, "entry_time": "2026-05-25 10:32:09", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23988.0, "sl_price": 24014.7, "target_price": 23921.3, "exit_time": "2026-05-25 10:49:19", "exit_price": 24005.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -17.0, "pnl_rupees": -1275.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 78, "entry_time": "2026-05-25 10:49:19", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24006.9, "sl_price": 23980.2, "target_price": 24073.600000000002, "exit_time": "2026-05-25 11:02:40", "exit_price": 23979.0, "exit_reason": "SL_HIT", "pnl_points": -27.9, "pnl_rupees": -2092.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 79, "entry_time": "2026-05-26 10:23:57", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24060.0, "sl_price": 24086.7, "target_price": 23993.3, "exit_time": "2026-05-26 11:05:30", "exit_price": 24070.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -10.0, "pnl_rupees": -750.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 80, "entry_time": "2026-05-26 11:05:31", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24074.0, "sl_price": 24047.3, "target_price": 24140.7, "exit_time": "2026-05-26 11:20:49", "exit_price": 24063.5, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -10.5, "pnl_rupees": -787.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 81, "entry_time": "2026-05-26 11:20:50", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24063.5, "sl_price": 24090.2, "target_price": 23996.8, "exit_time": "2026-05-26 12:45:53", "exit_price": 23993.9, "exit_reason": "TARGET_HIT", "pnl_points": 69.6, "pnl_rupees": 5220.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 82, "entry_time": "2026-05-26 12:50:16", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23995.0, "sl_price": 24021.7, "target_price": 23928.3, "exit_time": "2026-05-26 13:26:30", "exit_price": 23977.5, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 17.5, "pnl_rupees": 1312.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 83, "entry_time": "2026-05-26 13:26:31", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23976.0, "sl_price": 23949.3, "target_price": 24042.7, "exit_time": "2026-05-26 13:32:48", "exit_price": 23976.1, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 0.1, "pnl_rupees": 7.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 84, "entry_time": "2026-05-26 13:32:48", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23980.0, "sl_price": 24006.7, "target_price": 23913.3, "exit_time": "2026-05-26 14:04:14", "exit_price": 23911.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.0, "pnl_rupees": 5175.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 85, "entry_time": "2026-05-26 14:55:48", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23883.1, "sl_price": 23909.8, "target_price": 23816.399999999998, "exit_time": "2026-05-26 14:57:47", "exit_price": 23910.0, "exit_reason": "SL_HIT", "pnl_points": -26.9, "pnl_rupees": -2017.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 86, "entry_time": "2026-05-29 11:14:23", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 24000.2, "sl_price": 23973.5, "target_price": 24066.9, "exit_time": "2026-05-29 11:14:25", "exit_price": 23913.0, "exit_reason": "SL_HIT", "pnl_points": -87.2, "pnl_rupees": -6540.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 87, "entry_time": "2026-05-29 13:07:26", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23910.0, "sl_price": 23936.7, "target_price": 23843.3, "exit_time": "2026-05-29 14:56:03", "exit_price": 23913.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -3.0, "pnl_rupees": -225.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 88, "entry_time": "2026-05-29 14:56:04", "side": "BUY", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23840.0, "sl_price": 23813.3, "target_price": 23906.7, "exit_time": "2026-05-29 14:56:05", "exit_price": 23913.0, "exit_reason": "TARGET_HIT", "pnl_points": 73.0, "pnl_rupees": 5475.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 89, "entry_time": "2026-05-29 15:04:06", "side": "SELL", "instrument": "NSE:NIFTY26MAYFUT", "entry_price": 23727.4, "sl_price": 23754.100000000002, "target_price": 23660.7, "exit_time": "2026-05-29 15:04:07", "exit_price": 23913.0, "exit_reason": "SL_HIT", "pnl_points": -185.6, "pnl_rupees": -13920.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 90, "entry_time": "2026-06-01 10:57:03", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23661.5, "sl_price": 23634.8, "target_price": 23728.2, "exit_time": "2026-06-01 11:29:52", "exit_price": 23632.0, "exit_reason": "SL_HIT", "pnl_points": -29.5, "pnl_rupees": -2212.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 91, "entry_time": "2026-06-01 11:36:17", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23624.9, "sl_price": 23651.600000000002, "target_price": 23558.2, "exit_time": "2026-06-01 11:59:27", "exit_price": 23558.0, "exit_reason": "TARGET_HIT", "pnl_points": 66.9, "pnl_rupees": 5017.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 92, "entry_time": "2026-06-01 12:03:47", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23560.0, "sl_price": 23586.7, "target_price": 23493.3, "exit_time": "2026-06-01 12:14:22", "exit_price": 23587.7, "exit_reason": "SL_HIT", "pnl_points": -27.7, "pnl_rupees": -2077.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 93, "entry_time": "2026-06-01 12:17:34", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23578.5, "sl_price": 23551.8, "target_price": 23645.2, "exit_time": "2026-06-01 12:34:30", "exit_price": 23570.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -8.5, "pnl_rupees": -637.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 94, "entry_time": "2026-06-01 12:34:32", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23571.0, "sl_price": 23597.7, "target_price": 23504.3, "exit_time": "2026-06-01 12:43:05", "exit_price": 23570.5, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 0.5, "pnl_rupees": 37.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 95, "entry_time": "2026-06-01 12:43:06", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23570.5, "sl_price": 23543.8, "target_price": 23637.2, "exit_time": "2026-06-01 13:08:10", "exit_price": 23543.5, "exit_reason": "SL_HIT", "pnl_points": -27.0, "pnl_rupees": -2025.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 96, "entry_time": "2026-06-03 09:47:46", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23334.0, "sl_price": 23400.7, "target_price": 23267.3, "exit_time": "2026-06-03 11:09:15", "exit_price": 23264.5, "exit_reason": "TARGET_HIT", "pnl_points": 69.5, "pnl_rupees": 5212.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 97, "entry_time": "2026-06-03 11:09:46", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23262.0, "sl_price": 23328.7, "target_price": 23195.3, "exit_time": "2026-06-03 12:30:40", "exit_price": 23330.0, "exit_reason": "SL_HIT", "pnl_points": -68.0, "pnl_rupees": -5100.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 98, "entry_time": "2026-06-03 12:35:25", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23370.0, "sl_price": 23303.3, "target_price": 23436.7, "exit_time": "2026-06-03 12:53:51", "exit_price": 23375.1, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 5.1, "pnl_rupees": 382.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 99, "entry_time": "2026-06-03 12:53:51", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23375.1, "sl_price": 23441.8, "target_price": 23308.399999999998, "exit_time": "2026-06-03 13:15:38", "exit_price": 23392.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -16.9, "pnl_rupees": -1267.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 100, "entry_time": "2026-06-03 13:15:39", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23389.3, "sl_price": 23322.6, "target_price": 23456.0, "exit_time": "2026-06-03 13:46:56", "exit_price": 23456.5, "exit_reason": "TARGET_HIT", "pnl_points": 67.2, "pnl_rupees": 5040.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 101, "entry_time": "2026-06-03 14:02:50", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23480.8, "sl_price": 23547.5, "target_price": 23414.1, "exit_time": "2026-06-03 14:23:04", "exit_price": 23549.0, "exit_reason": "SL_HIT", "pnl_points": -68.2, "pnl_rupees": -5115.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 102, "entry_time": "2026-06-04 09:33:54", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23405.9, "sl_price": 23472.600000000002, "target_price": 23339.2, "exit_time": "2026-06-04 09:41:05", "exit_price": 23380.1, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 25.8, "pnl_rupees": 1935.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 103, "entry_time": "2026-06-04 09:41:05", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23381.3, "sl_price": 23314.6, "target_price": 23448.0, "exit_time": "2026-06-04 09:49:03", "exit_price": 23449.0, "exit_reason": "TARGET_HIT", "pnl_points": 67.7, "pnl_rupees": 5077.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 104, "entry_time": "2026-06-04 10:30:20", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23490.0, "sl_price": 23423.3, "target_price": 23556.7, "exit_time": "2026-06-04 10:33:40", "exit_price": 23460.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -30.0, "pnl_rupees": -2250.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 105, "entry_time": "2026-06-04 10:33:41", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23462.6, "sl_price": 23529.3, "target_price": 23395.899999999998, "exit_time": "2026-06-04 10:51:08", "exit_price": 23481.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -18.4, "pnl_rupees": -1380.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 106, "entry_time": "2026-06-04 10:51:09", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23481.0, "sl_price": 23414.3, "target_price": 23547.7, "exit_time": "2026-06-04 11:32:16", "exit_price": 23413.2, "exit_reason": "SL_HIT", "pnl_points": -67.8, "pnl_rupees": -5085.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 107, "entry_time": "2026-06-05 09:54:05", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23538.3, "sl_price": 23605.0, "target_price": 23471.6, "exit_time": "2026-06-05 10:10:37", "exit_price": 23569.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -30.7, "pnl_rupees": -2302.5, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 108, "entry_time": "2026-06-05 10:10:38", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23559.9, "sl_price": 23493.2, "target_price": 23626.600000000002, "exit_time": "2026-06-05 10:17:53", "exit_price": 23560.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": 0.1, "pnl_rupees": 7.5, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 109, "entry_time": "2026-06-05 10:17:54", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23545.0, "sl_price": 23611.7, "target_price": 23478.3, "exit_time": "2026-06-05 10:36:10", "exit_price": 23476.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.0, "pnl_rupees": 5175.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 110, "entry_time": "2026-06-05 10:38:26", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23464.0, "sl_price": 23530.7, "target_price": 23397.3, "exit_time": "2026-06-05 11:02:12", "exit_price": 23480.0, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -16.0, "pnl_rupees": -1200.0, "checklist_score": 4, "checklist_bias": "BEARISH"}, {"id": 111, "entry_time": "2026-06-05 11:02:13", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23475.2, "sl_price": 23408.5, "target_price": 23541.9, "exit_time": "2026-06-05 11:05:56", "exit_price": 23545.0, "exit_reason": "TARGET_HIT", "pnl_points": 69.8, "pnl_rupees": 5235.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 112, "entry_time": "2026-06-05 11:10:25", "side": "BUY", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23569.3, "sl_price": 23502.6, "target_price": 23636.0, "exit_time": "2026-06-05 11:14:18", "exit_price": 23537.9, "exit_reason": "COUNTER_VIEW_FLIP", "pnl_points": -31.4, "pnl_rupees": -2355.0, "checklist_score": 4, "checklist_bias": "BULLISH"}, {"id": 113, "entry_time": "2026-06-05 11:14:20", "side": "SELL", "instrument": "NSE:NIFTY26JUNFUT", "entry_price": 23539.8, "sl_price": 23606.5, "target_price": 23473.1, "exit_time": "2026-06-05 11:21:11", "exit_price": 23471.0, "exit_reason": "TARGET_HIT", "pnl_points": 68.8, "pnl_rupees": 5160.0, "checklist_score": 4, "checklist_bias": "BEARISH"}];
+    const monthlyData = {"2026-04": {"total_trades": 15, "wins": 5, "losses": 10, "win_rate": 33.33333333333333, "total_pnl": 765.0, "total_points": 10.200000000000003}, "2026-05": {"total_trades": 74, "wins": 27, "losses": 47, "win_rate": 36.486486486486484, "total_pnl": 3525.0, "total_points": 47.00000000000003}, "2026-06": {"total_trades": 24, "wins": 11, "losses": 13, "win_rate": 45.83333333333333, "total_pnl": 5272.5, "total_points": 70.30000000000001}};
+
+    function populateMonthSelector() {
+      const select = document.getElementById('monthSelect');
+      Object.keys(monthlyData).sort().forEach(month => {
+        const option = document.createElement('option');
+        option.value = month;
+        const date = new Date(month + '-01');
+        option.textContent = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+        select.appendChild(option);
+      });
+    }
+
+    function filterByMonth() {
+      const currentFilter = document.getElementById('monthSelect').value;
+      if (currentFilter === 'all') {
+        updateStats(allTrades);
         updateTable(allTrades);
-    </script>
+        document.getElementById('tableTitle').textContent = 'Trade history — All time';
+      } else {
+        const monthTrades = allTrades.filter(t => t.entry_time.startsWith(currentFilter));
+        updateStats(monthTrades);
+        updateTable(monthTrades);
+        const date = new Date(currentFilter + '-01');
+        const monthName = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+        document.getElementById('tableTitle').textContent = 'Trade history — ' + monthName;
+      }
+    }
+
+    function updateStats(trades) {
+      const wins = trades.filter(t => t.pnl_rupees > 0);
+      const losses = trades.filter(t => t.pnl_rupees <= 0);
+      const totalPnl = trades.reduce((s, t) => s + t.pnl_rupees, 0);
+      const totalPoints = trades.reduce((s, t) => s + t.pnl_points, 0);
+      const winRate = trades.length ? (wins.length / trades.length * 100) : 0;
+      const avgWin = wins.length ? wins.reduce((s, t) => s + t.pnl_rupees, 0) / wins.length : 0;
+      const avgLoss = losses.length ? losses.reduce((s, t) => s + t.pnl_rupees, 0) / losses.length : 0;
+      const grossProfit = wins.reduce((s, t) => s + t.pnl_rupees, 0);
+      const grossLoss = Math.abs(losses.reduce((s, t) => s + t.pnl_rupees, 0));
+      const profitFactor = grossLoss > 0 ? grossProfit / grossLoss : 0;
+
+      document.getElementById('totalTrades').textContent = trades.length;
+      const netEl = document.getElementById('netPnl');
+      netEl.textContent = '₹' + totalPnl.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      netEl.className = 'value ' + (totalPnl > 0 ? 'positive' : 'negative');
+      document.getElementById('netPoints').textContent = (totalPoints > 0 ? '+' : '') + totalPoints.toFixed(1) + ' pts';
+      document.getElementById('winRate').textContent = winRate.toFixed(1) + '%';
+      document.getElementById('winLoss').textContent = wins.length + 'W / ' + losses.length + 'L';
+      document.getElementById('avgWin').textContent = '₹' + avgWin.toFixed(2);
+      document.getElementById('avgLoss').textContent = '₹' + avgLoss.toFixed(2);
+      const pfEl = document.getElementById('profitFactor');
+      pfEl.textContent = profitFactor.toFixed(2);
+      pfEl.className = 'value ' + (profitFactor > 1 ? 'positive' : 'negative');
+      document.getElementById('grossProfit').textContent = '₹' + grossProfit.toLocaleString('en-IN', {minimumFractionDigits: 2});
+    }
+
+    function exitBadgeClass(reason) {
+      if (reason === 'TARGET_HIT') return 'badge-target';
+      if (reason === 'SL_HIT') return 'badge-sl';
+      if (reason === 'COUNTER_VIEW_FLIP') return 'badge-flip';
+      return 'badge-other';
+    }
+
+    function updateTable(trades) {
+      const tbody = document.getElementById('tradesTable');
+      tbody.innerHTML = '';
+      if (!trades.length) {
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--muted);padding:2rem">No trades in this period</td></tr>';
+        return;
+      }
+      [...trades].sort((a, b) => b.id - a.id).forEach(trade => {
+        const sideBadge = trade.side === 'BUY' ? 'badge-buy' : 'badge-sell';
+        const rowClass = trade.pnl_rupees > 0 ? 'win' : 'loss';
+        const pnlClass = trade.pnl_rupees > 0 ? 'positive' : 'negative';
+        const exitCls = exitBadgeClass(trade.exit_reason);
+        const reason = trade.exit_reason.replace(/_/g, ' ');
+        tbody.innerHTML += `
+          <tr class="${rowClass}">
+            <td><strong>#${trade.id}</strong></td>
+            <td>${trade.entry_time}</td>
+            <td><span class="badge ${sideBadge}">${trade.side}</span></td>
+            <td>₹${trade.entry_price.toFixed(2)}</td>
+            <td>₹${trade.exit_price.toFixed(2)}</td>
+            <td>${trade.exit_time}</td>
+            <td><span class="badge ${exitCls}">${reason}</span></td>
+            <td class="${pnlClass}"><strong>₹${trade.pnl_rupees.toFixed(2)}</strong></td>
+            <td class="${pnlClass}">${trade.pnl_points > 0 ? '+' : ''}${trade.pnl_points.toFixed(2)}</td>
+            <td>${trade.checklist_score}/6</td>
+          </tr>`;
+      });
+    }
+
+    populateMonthSelector();
+    updateTable(allTrades);
+  </script>
 </body>
 </html>
