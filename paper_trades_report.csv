@@ -78,7 +78,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-8,2026-04-29 11:34:38,SELL,NSE:NIFTY26MAYFUT,24400.1,24426.8,24333.399999999998,26.7,66.7,2026-04-29 12:11:13,24430.0,SL_HIT,-29.9,-2242.5,4,BEARISH,"
+8,2026-04-29 11:34:38,SELL,NSE:NIFTY26MAYFUT,24400.1,24426.8,24333.4,26.7,66.7,2026-04-29 12:11:13,24430.0,SL_HIT,-29.9,-2242.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 1.45 → 1.32 (Bearish momentum)
@@ -158,7 +158,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-16,2026-05-04 09:20:25,SELL,NSE:NIFTY26MAYFUT,24297.1,24323.8,24230.399999999998,26.7,66.7,2026-05-04 09:30:14,24324.7,SL_HIT,-27.6,-2070.0,4,BEARISH,"
+16,2026-05-04 09:20:25,SELL,NSE:NIFTY26MAYFUT,24297.1,24323.8,24230.4,26.7,66.7,2026-05-04 09:30:14,24324.7,SL_HIT,-27.6,-2070.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.62 → 0.60 (Bearish momentum)
@@ -188,7 +188,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-19,2026-05-05 10:08:53,SELL,NSE:NIFTY26MAYFUT,24048.4,24075.100000000002,23981.7,26.7,66.7,2026-05-05 10:35:57,23981.0,TARGET_HIT,67.4,5055.0,4,BEARISH,"
+19,2026-05-05 10:08:53,SELL,NSE:NIFTY26MAYFUT,24048.4,24075.1,23981.7,26.7,66.7,2026-05-05 10:35:57,23981.0,TARGET_HIT,67.4,5055.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.89 → 0.89 (Bearish momentum)
@@ -228,7 +228,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-23,2026-05-06 10:51:58,BUY,NSE:NIFTY26MAYFUT,24190.1,24163.399999999998,24256.8,26.7,66.7,2026-05-06 11:03:07,24161.0,SL_HIT,-29.1,-2182.5,4,BULLISH,"
+23,2026-05-06 10:51:58,BUY,NSE:NIFTY26MAYFUT,24190.1,24163.4,24256.8,26.7,66.7,2026-05-06 11:03:07,24161.0,SL_HIT,-29.1,-2182.5,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 0.67 → 0.71 (Bullish momentum)
@@ -278,7 +278,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-28,2026-05-07 09:23:16,SELL,NSE:NIFTY26MAYFUT,24349.1,24375.8,24282.399999999998,26.7,66.7,2026-05-07 09:23:49,24379.6,SL_HIT,-30.5,-2287.5,4,BEARISH,"
+28,2026-05-07 09:23:16,SELL,NSE:NIFTY26MAYFUT,24349.1,24375.8,24282.4,26.7,66.7,2026-05-07 09:23:49,24379.6,SL_HIT,-30.5,-2287.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.98 → 0.89 (Bearish momentum)
@@ -288,7 +288,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-29,2026-05-07 09:40:02,SELL,NSE:NIFTY26MAYFUT,24399.4,24426.100000000002,24332.7,26.7,66.7,2026-05-07 09:42:01,24429.0,SL_HIT,-29.6,-2220.0,4,BEARISH,"
+29,2026-05-07 09:40:02,SELL,NSE:NIFTY26MAYFUT,24399.4,24426.1,24332.7,26.7,66.7,2026-05-07 09:42:01,24429.0,SL_HIT,-29.6,-2220.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.87 → 0.87 (Bearish momentum)
@@ -318,7 +318,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-32,2026-05-08 10:26:35,BUY,NSE:NIFTY26MAYFUT,24282.4,24255.7,24349.100000000002,26.7,66.7,2026-05-08 10:51:38,24255.0,SL_HIT,-27.4,-2055.0,4,BULLISH,"
+32,2026-05-08 10:26:35,BUY,NSE:NIFTY26MAYFUT,24282.4,24255.7,24349.1,26.7,66.7,2026-05-08 10:51:38,24255.0,SL_HIT,-27.4,-2055.0,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 0.84 → 0.87 (Bullish momentum)
@@ -348,7 +348,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-35,2026-05-08 14:13:25,BUY,NSE:NIFTY26MAYFUT,24202.4,24175.7,24269.100000000002,26.7,66.7,2026-05-08 14:39:47,24269.9,TARGET_HIT,67.5,5062.5,4,BULLISH,"
+35,2026-05-08 14:13:25,BUY,NSE:NIFTY26MAYFUT,24202.4,24175.7,24269.1,26.7,66.7,2026-05-08 14:39:47,24269.9,TARGET_HIT,67.5,5062.5,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 0.77 → 0.78 (Bullish momentum)
@@ -418,7 +418,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-42,2026-05-12 12:17:01,SELL,NSE:NIFTY26MAYFUT,23595.6,23622.3,23528.899999999998,26.7,66.7,2026-05-12 14:00:11,23526.0,TARGET_HIT,69.6,5220.0,4,BEARISH,"
+42,2026-05-12 12:17:01,SELL,NSE:NIFTY26MAYFUT,23595.6,23622.3,23528.9,26.7,66.7,2026-05-12 14:00:11,23526.0,TARGET_HIT,69.6,5220.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.62 → 0.62 (Bearish momentum)
@@ -428,7 +428,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-43,2026-05-12 14:01:07,SELL,NSE:NIFTY26MAYFUT,23523.9,23550.600000000002,23457.2,26.7,66.7,2026-05-12 14:55:18,23455.0,TARGET_HIT,68.9,5167.5,4,BEARISH,"
+43,2026-05-12 14:01:07,SELL,NSE:NIFTY26MAYFUT,23523.9,23550.6,23457.2,26.7,66.7,2026-05-12 14:55:18,23455.0,TARGET_HIT,68.9,5167.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.76 → 0.76 (Bearish momentum)
@@ -488,7 +488,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-49,2026-05-13 12:01:02,SELL,NSE:NIFTY26MAYFUT,23511.1,23537.8,23444.399999999998,26.7,66.7,2026-05-13 12:14:21,23538.3,SL_HIT,-27.2,-2040.0,4,BEARISH,"
+49,2026-05-13 12:01:02,SELL,NSE:NIFTY26MAYFUT,23511.1,23537.8,23444.4,26.7,66.7,2026-05-13 12:14:21,23538.3,SL_HIT,-27.2,-2040.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 1.17 → 1.16 (Bearish momentum)
@@ -538,7 +538,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-54,2026-05-14 11:44:12,BUY,NSE:NIFTY26MAYFUT,23672.1,23645.399999999998,23738.8,26.7,66.7,2026-05-14 12:05:23,23661.2,COUNTER_VIEW_FLIP,-10.9,-817.5,4,BULLISH,"
+54,2026-05-14 11:44:12,BUY,NSE:NIFTY26MAYFUT,23672.1,23645.4,23738.8,26.7,66.7,2026-05-14 12:05:23,23661.2,COUNTER_VIEW_FLIP,-10.9,-817.5,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 0.98 → 1.01 (Bullish momentum)
@@ -548,7 +548,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-55,2026-05-14 12:05:24,SELL,NSE:NIFTY26MAYFUT,23666.4,23693.100000000002,23599.7,26.7,66.7,2026-05-14 12:15:15,23694.0,SL_HIT,-27.6,-2070.0,4,BEARISH,"
+55,2026-05-14 12:05:24,SELL,NSE:NIFTY26MAYFUT,23666.4,23693.1,23599.7,26.7,66.7,2026-05-14 12:15:15,23694.0,SL_HIT,-27.6,-2070.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 1.29 → 1.29 (Bearish momentum)
@@ -568,7 +568,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-57,2026-05-15 09:44:24,BUY,NSE:NIFTY26MAYFUT,23811.9,23785.2,23878.600000000002,26.7,66.7,2026-05-15 10:09:40,23785.0,SL_HIT,-26.9,-2017.5,4,BULLISH,"
+57,2026-05-15 09:44:24,BUY,NSE:NIFTY26MAYFUT,23811.9,23785.2,23878.6,26.7,66.7,2026-05-15 10:09:40,23785.0,SL_HIT,-26.9,-2017.5,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 1.09 → 1.12 (Bullish momentum)
@@ -578,7 +578,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-58,2026-05-15 10:17:01,SELL,NSE:NIFTY26MAYFUT,23802.1,23828.8,23735.399999999998,26.7,66.7,2026-05-15 10:26:14,23829.0,SL_HIT,-26.9,-2017.5,4,BEARISH,"
+58,2026-05-15 10:17:01,SELL,NSE:NIFTY26MAYFUT,23802.1,23828.8,23735.4,26.7,66.7,2026-05-15 10:26:14,23829.0,SL_HIT,-26.9,-2017.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 1.25 → 1.23 (Bearish momentum)
@@ -628,7 +628,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-63,2026-05-19 10:03:09,SELL,NSE:NIFTY26MAYFUT,23720.4,23747.100000000002,23653.7,26.7,66.7,2026-05-19 10:11:43,23747.9,SL_HIT,-27.5,-2062.5,4,BEARISH,"
+63,2026-05-19 10:03:09,SELL,NSE:NIFTY26MAYFUT,23720.4,23747.1,23653.7,26.7,66.7,2026-05-19 10:11:43,23747.9,SL_HIT,-27.5,-2062.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.91 → 0.91 (Bearish momentum)
@@ -658,7 +658,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-66,2026-05-20 10:32:07,SELL,NSE:NIFTY26MAYFUT,23539.4,23566.100000000002,23472.7,26.7,66.7,2026-05-20 10:32:47,23567.4,SL_HIT,-28.0,-2100.0,4,BEARISH,"
+66,2026-05-20 10:32:07,SELL,NSE:NIFTY26MAYFUT,23539.4,23566.1,23472.7,26.7,66.7,2026-05-20 10:32:47,23567.4,SL_HIT,-28.0,-2100.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 1.22 → 1.02 (Bearish momentum)
@@ -678,7 +678,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-68,2026-05-21 10:06:18,SELL,NSE:NIFTY26MAYFUT,23764.9,23791.600000000002,23698.2,26.7,66.7,2026-05-21 11:00:12,23695.0,TARGET_HIT,69.9,5242.5,4,BEARISH,"
+68,2026-05-21 10:06:18,SELL,NSE:NIFTY26MAYFUT,23764.9,23791.6,23698.2,26.7,66.7,2026-05-21 11:00:12,23695.0,TARGET_HIT,69.9,5242.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.82 → 0.81 (Bearish momentum)
@@ -708,7 +708,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-71,2026-05-22 09:27:50,BUY,NSE:NIFTY26MAYFUT,23750.6,23723.899999999998,23817.3,26.7,66.7,2026-05-22 11:12:06,23789.0,COUNTER_VIEW_FLIP,38.4,2880.0,4,BULLISH,"
+71,2026-05-22 09:27:50,BUY,NSE:NIFTY26MAYFUT,23750.6,23723.9,23817.3,26.7,66.7,2026-05-22 11:12:06,23789.0,COUNTER_VIEW_FLIP,38.4,2880.0,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 0.80 → 0.83 (Bullish momentum)
@@ -728,7 +728,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-73,2026-05-22 12:01:18,BUY,NSE:NIFTY26MAYFUT,23810.9,23784.2,23877.600000000002,26.7,66.7,2026-05-22 12:21:49,23799.0,COUNTER_VIEW_FLIP,-11.9,-892.5,4,BULLISH,"
+73,2026-05-22 12:01:18,BUY,NSE:NIFTY26MAYFUT,23810.9,23784.2,23877.6,26.7,66.7,2026-05-22 12:21:49,23799.0,COUNTER_VIEW_FLIP,-11.9,-892.5,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 1.10 → 1.10 (Bullish momentum)
@@ -778,7 +778,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-78,2026-05-25 10:49:19,BUY,NSE:NIFTY26MAYFUT,24006.9,23980.2,24073.600000000002,26.7,66.7,2026-05-25 11:02:40,23979.0,SL_HIT,-27.9,-2092.5,4,BULLISH,"
+78,2026-05-25 10:49:19,BUY,NSE:NIFTY26MAYFUT,24006.9,23980.2,24073.6,26.7,66.7,2026-05-25 11:02:40,23979.0,SL_HIT,-27.9,-2092.5,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 0.89 → 0.90 (Bullish momentum)
@@ -848,7 +848,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-85,2026-05-26 14:55:48,SELL,NSE:NIFTY26MAYFUT,23883.1,23909.8,23816.399999999998,26.7,66.7,2026-05-26 14:57:47,23910.0,SL_HIT,-26.9,-2017.5,4,BEARISH,"
+85,2026-05-26 14:55:48,SELL,NSE:NIFTY26MAYFUT,23883.1,23909.8,23816.4,26.7,66.7,2026-05-26 14:57:47,23910.0,SL_HIT,-26.9,-2017.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.88 → 0.86 (Bearish momentum)
@@ -888,16 +888,6 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-89,2026-05-29 15:04:06,SELL,NSE:NIFTY26MAYFUT,23727.4,23754.100000000002,23660.7,26.7,66.7,2026-05-29 15:04:07,23913.0,SL_HIT,-185.6,-13920.0,4,BEARISH,"
-──────────────────────────────
-🎯 INSTITUTIONAL CHECKLIST (4/4)
-  ✅ 1. PCR Trend: PCR Falling 0.97 → 0.95 (Bearish momentum)
-  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23600: CE 5m +810,485 | PE 5m -225,875 | OTM CE +632,515 | OTM PE +427,570
-  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
-  ✅ 4. Order Flow: Sell dominant (0.0x)
-
-  🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
-──────────────────────────────"
 90,2026-06-01 10:57:03,BUY,NSE:NIFTY26JUNFUT,23661.5,23634.8,23728.2,26.7,66.7,2026-06-01 11:29:52,23632.0,SL_HIT,-29.5,-2212.5,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
@@ -908,7 +898,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-91,2026-06-01 11:36:17,SELL,NSE:NIFTY26JUNFUT,23624.9,23651.600000000002,23558.2,26.7,66.7,2026-06-01 11:59:27,23558.0,TARGET_HIT,66.9,5017.5,4,BEARISH,"
+91,2026-06-01 11:36:17,SELL,NSE:NIFTY26JUNFUT,23624.9,23651.6,23558.2,26.7,66.7,2026-06-01 11:59:27,23558.0,TARGET_HIT,66.9,5017.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 0.86 → 0.85 (Bearish momentum)
@@ -988,7 +978,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-99,2026-06-03 12:53:51,SELL,NSE:NIFTY26JUNFUT,23375.1,23441.8,23308.399999999998,66.7,66.7,2026-06-03 13:15:38,23392.0,COUNTER_VIEW_FLIP,-16.9,-1267.5,4,BEARISH,"
+99,2026-06-03 12:53:51,SELL,NSE:NIFTY26JUNFUT,23375.1,23441.8,23308.4,66.7,66.7,2026-06-03 13:15:38,23392.0,COUNTER_VIEW_FLIP,-16.9,-1267.5,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 1.03 → 1.03 (Bearish momentum)
@@ -1018,7 +1008,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-102,2026-06-04 09:33:54,SELL,NSE:NIFTY26JUNFUT,23405.9,23472.600000000002,23339.2,66.7,66.7,2026-06-04 09:41:05,23380.1,COUNTER_VIEW_FLIP,25.8,1935.0,4,BEARISH,"
+102,2026-06-04 09:33:54,SELL,NSE:NIFTY26JUNFUT,23405.9,23472.6,23339.2,66.7,66.7,2026-06-04 09:41:05,23380.1,COUNTER_VIEW_FLIP,25.8,1935.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 1.16 → 1.15 (Bearish momentum)
@@ -1048,7 +1038,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 4 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
-105,2026-06-04 10:33:41,SELL,NSE:NIFTY26JUNFUT,23462.6,23529.3,23395.899999999998,66.7,66.7,2026-06-04 10:51:08,23481.0,COUNTER_VIEW_FLIP,-18.4,-1380.0,4,BEARISH,"
+105,2026-06-04 10:33:41,SELL,NSE:NIFTY26JUNFUT,23462.6,23529.3,23395.9,66.7,66.7,2026-06-04 10:51:08,23481.0,COUNTER_VIEW_FLIP,-18.4,-1380.0,4,BEARISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Falling 1.33 → 1.33 (Bearish momentum)
@@ -1078,7 +1068,7 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 4 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
-108,2026-06-05 10:10:38,BUY,NSE:NIFTY26JUNFUT,23559.9,23493.2,23626.600000000002,66.7,66.7,2026-06-05 10:17:53,23560.0,COUNTER_VIEW_FLIP,0.1,7.5,4,BULLISH,"
+108,2026-06-05 10:10:38,BUY,NSE:NIFTY26JUNFUT,23559.9,23493.2,23626.6,66.7,66.7,2026-06-05 10:17:53,23560.0,COUNTER_VIEW_FLIP,0.1,7.5,4,BULLISH,"
 ──────────────────────────────
 🎯 INSTITUTIONAL CHECKLIST (4/4)
   ✅ 1. PCR Trend: PCR Rising 0.86 → 0.89 (Bullish momentum)
