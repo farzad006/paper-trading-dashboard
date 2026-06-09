@@ -1204,3 +1204,25 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
   Signal    : ✅ AGREES with trade
   Updated   : 12:05:50
 ──────────────────────────────"
+118,2026-06-09 12:06:26,BUY,NSE:NIFTY26JUNFUT,23226.8,23160.1,23293.5,66.7,66.7,2026-06-09 14:39:34,23294.0,TARGET_HIT,67.2,5040.0,5,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Rising 0.76 → 0.76 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23200: CE 5m -2,282,085 | PE 5m +2,054,455 | OTM CE -873,925 | OTM PE +2,525,380
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (49.5x)
+  ✅ 5. Kronos Forecast: BULLISH (+58.5 pts | HIGH confidence)
+
+  🟢🟢 ALL 5 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+119,2026-06-09 14:41:15,BUY,NSE:NIFTY26JUNFUT,23313.0,23246.3,23379.7,66.7,66.7,2026-06-09 15:10:01,23337.9,EOD_CLOSE,24.9,1867.5,5,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Rising 0.82 → 0.87 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (3/3) — ATM 23250: CE 5m -14,869,270 | PE 5m +9,249,435 | OTM CE +1,609,920 | OTM PE +2,020,720
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (21.5x)
+  ✅ 5. Kronos Forecast: BULLISH (+230.9 pts | HIGH confidence)
+
+  🟢🟢 ALL 5 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
