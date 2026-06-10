@@ -1226,3 +1226,47 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🟢🟢 ALL 5 CHECKS BULLISH — TRADE ENTRY
 ──────────────────────────────"
+120,2026-06-10 09:40:37,BUY,NSE:NIFTY26JUNFUT,23369.0,23302.3,23435.7,66.7,66.7,2026-06-10 10:20:49,23352.0,COUNTER_VIEW_FLIP,-17.0,-1275.0,5,BULLISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Rising 1.10 → 1.11 (Bullish momentum)
+  ✅ 2. Near-Strike OI: Bullish (2/3) — ATM 23350: CE 5m +71,890 | PE 5m +507,650 | OTM CE +184,275 | OTM PE +574,015
+  ✅ 3. AI Timeframe Bias: 5m: BULLISH | 15m: BULLISH | 30m: BULLISH
+  ✅ 4. Order Flow: Buy dominant (27.3x)
+  ✅ 5. Kronos Forecast: BULLISH (+14.5 pts | MEDIUM confidence)
+
+  🟢🟢 ALL 5 CHECKS BULLISH — TRADE ENTRY
+──────────────────────────────"
+121,2026-06-10 10:20:50,SELL,NSE:NIFTY26JUNFUT,23355.0,23421.7,23288.3,66.7,66.7,2026-06-10 11:27:20,23425.0,SL_HIT,-70.0,-5250.0,5,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Falling 1.11 → 1.01 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23350: CE 5m +435,630 | PE 5m -391,950 | OTM CE +343,785 | OTM PE -364,650
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+  ✅ 5. Kronos Forecast: BEARISH (-38.0 pts | HIGH confidence)
+
+  🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+122,2026-06-10 12:11:45,SELL,NSE:NIFTY26JUNFUT,23417.0,23483.7,23350.3,66.7,66.7,2026-06-10 14:11:44,23350.0,TARGET_HIT,67.0,5025.0,5,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Falling 1.18 → 1.18 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23400: CE 5m +173,095 | PE 5m -60,645 | OTM CE +36,660 | OTM PE -31,265
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+  ✅ 5. Kronos Forecast: BEARISH (-77.2 pts | HIGH confidence)
+
+  🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+123,2026-06-10 14:24:18,SELL,NSE:NIFTY26JUNFUT,23349.9,23416.600000000002,23283.2,66.7,66.7,2026-06-10 14:42:58,23275.0,TARGET_HIT,74.9,5617.5,5,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Falling 0.90 → 0.90 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23350: CE 5m +223,015 | PE 5m +28,145 | OTM CE +154,960 | OTM PE +38,610
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.1x)
+  ✅ 5. Kronos Forecast: BEARISH (-28.7 pts | HIGH confidence)
+
+  🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
