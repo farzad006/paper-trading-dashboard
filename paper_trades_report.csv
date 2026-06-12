@@ -1281,3 +1281,36 @@ id,entry_time,side,instrument,entry_price,sl_price,target_price,sl_points,target
 
   🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
 ──────────────────────────────"
+125,2026-06-12 12:49:21,SELL,NSE:NIFTY26JUNFUT,23344.0,23410.7,23277.3,66.7,66.7,2026-06-12 13:27:02,23417.4,SL_HIT,-73.4,-5505.0,5,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Falling 0.81 → 0.81 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (3/3) — ATM 23300: CE 5m +1,044,680 | PE 5m -86,255 | OTM CE +853,320 | OTM PE -525,525
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+  ✅ 5. Kronos Forecast: BEARISH (-64.0 pts | HIGH confidence)
+
+  🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+126,2026-06-12 14:40:24,SELL,NSE:NIFTY26JUNFUT,23624.1,23690.8,23557.399999999998,66.7,66.7,2026-06-12 15:03:10,23693.0,SL_HIT,-68.9,-5167.5,5,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Falling 1.18 → 1.17 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23550: CE 5m +256,815 | PE 5m -35,685 | OTM CE -22,425 | OTM PE +32,890
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+  ✅ 5. Kronos Forecast: BEARISH (-301.1 pts | HIGH confidence)
+
+  🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"
+127,2026-06-12 15:05:09,SELL,NSE:NIFTY26JUNFUT,23699.5,23766.2,23632.8,66.7,66.7,2026-06-12 15:10:03,23680.0,EOD_CLOSE,19.5,1462.5,5,BEARISH,"
+──────────────────────────────
+🎯 INSTITUTIONAL CHECKLIST (5/5)
+  ✅ 1. PCR Trend: PCR Falling 1.13 → 1.11 (Bearish momentum)
+  ✅ 2. Near-Strike OI: Bearish (2/3) — ATM 23650: CE 5m +37,440 | PE 5m -40,040 | OTM CE -775,580 | OTM PE -31,720
+  ✅ 3. AI Timeframe Bias: 5m: BEARISH | 15m: BEARISH | 30m: BEARISH
+  ✅ 4. Order Flow: Sell dominant (0.0x)
+  ✅ 5. Kronos Forecast: BEARISH (-281.9 pts | HIGH confidence)
+
+  🔴🔴 ALL 5 CHECKS BEARISH — TRADE ENTRY
+──────────────────────────────"

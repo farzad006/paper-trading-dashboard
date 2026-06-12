@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algo Fyers — Control Panel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+    :root {
+      --bg: #0f172a; --surface: #1e293b; --surface2: #334155; --border: rgba(255,255,255,0.08);
+      --text: #e2e8f0; --muted: #94a3b8; --accent: #3b82f6; --green: #22c55e; --red: #ef4444;
+      --amber: #f59e0b; --purple: #a78bfa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    .bg-mesh { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 50% at 15% 0%, rgba(59,130,246,0.1), transparent),
+                  radial-gradient(ellipse 50% 40% at 85% 5%, rgba(139,92,246,0.08), transparent),
+                  radial-gradient(ellipse 60% 50% at 50% 100%, rgba(34,197,94,0.06), transparent); }
+
+    .wrap { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; padding: 1.5rem; }
+
+    /* Header */
+    .topbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+    .brand { display: flex; align-items: center; gap: 1rem; }
+    .logo { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+            font-weight: 700; font-size: 0.7rem; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4); color: #fff; }
+    .brand h1 { font-size: 1.2rem; font-weight: 700; }
+    .brand p { color: var(--muted); font-size: 0.78rem; }
+    .auth-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.9rem;
+                  border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+                  border: 1px solid var(--border); background: rgba(255,255,255,0.05); }
+
+    /* Stats */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .stat-card { background: rgba(30,41,59,0.9); border: 1px solid var(--border); border-radius: 14px;
+                 padding: 1rem 1.2rem; backdrop-filter: blur(12px); transition: transform 0.15s; }
+    .stat-card:hover { transform: translateY(-3px); }
+    .stat-card h3 { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; margin-bottom: 0.4rem; }
+    .stat-card .val { font-family: 'JetBrains Mono', monospace; font-size: 1.35rem; font-weight: 600; }
+
+    /* Service cards */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .svc-card { background: rgba(30,41,59,0.9); border: 1px solid var(--border); border-radius: 14px;
+                padding: 1.2rem; backdrop-filter: blur(12px); }
+    .svc-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .svc-card .desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+    .svc-card .meta { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.75rem; color: var(--muted); margin-bottom: 1rem; }
+    .svc-card .actions { display: flex; gap: 0.5rem; }
+    .svc-card .log-box { margin-top: 0.8rem; max-height: 150px; overflow-y: auto;
+                          background: #0f172a; border-radius: 8px; padding: 0.6rem;
+                          font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); line-height: 1.5; }
+
+    /* Buttons */
+    .btn { padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+           border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-green { background: rgba(34,197,94,0.15); color: var(--green); border-color: rgba(34,197,94,0.3); }
+    .btn-green:hover { background: rgba(34,197,94,0.25); }
+    .btn-red { background: rgba(239,68,68,0.15); color: var(--red); border-color: rgba(239,68,68,0.3); }
+    .btn-red:hover { background: rgba(239,68,68,0.25); }
+    .btn-amber { background: rgba(245,158,11,0.15); color: var(--amber); border-color: rgba(245,158,11,0.3); }
+    .btn-amber:hover { background: rgba(245,158,11,0.25); }
+    .btn-blue { background: rgba(59,130,246,0.15); color: var(--accent); border-color: rgba(59,130,246,0.3); }
+    .btn-blue:hover { background: rgba(59,130,246,0.25); }
+    .btn-sm { padding: 0.3rem 0.7rem; font-size: 0.72rem; }
+
+    /* Status dots */
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+    .dot-red { background: var(--red); box-shadow: 0 0 6px var(--red); }
+    .dot-gray { background: var(--muted); }
+
+    /* Tables */
+    .panel { background: rgba(30,41,59,0.9); border: 1px solid var(--border); border-radius: 14px;
+             padding: 1.2rem; backdrop-filter: blur(12px); margin-bottom: 1.5rem; overflow-x: auto; }
+    .panel h2 { font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    th { text-align: left; padding: 0.5rem 0.6rem; font-size: 0.65rem; text-transform: uppercase;
+         letter-spacing: 0.05em; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 600; }
+    td { padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+         font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+    tr:hover td { background: rgba(255,255,255,0.03); }
+    .up { color: var(--green); } .dn { color: var(--red); }
+
+    .footer { text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 2rem; padding-bottom: 1rem; }
+
+    /* Refresh spinner */
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--muted);
+               border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="bg-mesh"></div>
+  <div class="wrap">
+
+    <!-- Header -->
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">ALGO</div>
+        <div>
+          <h1>Algo Fyers Control Panel</h1>
+          <p>Nifty Futures Trading System &middot; <span id="lastRefresh">--</span></p>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;">
+        <span class="auth-badge" id="authBadge"><span class="dot dot-gray"></span> Fyers: Checking...</span>
+        <span class="auth-badge" id="kronosBadge"><span class="dot dot-gray"></span> Kronos: --</span>
+        <button class="btn btn-blue btn-sm" onclick="startAll()">Start All</button>
+        <button class="btn btn-red btn-sm" onclick="stopAll()">Stop All</button>
+        <button class="btn btn-amber btn-sm" onclick="refreshAll()">Refresh</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats" id="statsGrid">
+      <div class="stat-card"><h3>Total Trades</h3><div class="val" id="stTotal">--</div></div>
+      <div class="stat-card"><h3>Net P&L</h3><div class="val" id="stPnl">--</div></div>
+      <div class="stat-card"><h3>Win Rate</h3><div class="val" id="stWinRate">--</div></div>
+      <div class="stat-card"><h3>Profit Factor</h3><div class="val" id="stPF">--</div></div>
+      <div class="stat-card"><h3>Avg Win</h3><div class="val up" id="stAvgWin">--</div></div>
+      <div class="stat-card"><h3>Avg Loss</h3><div class="val dn" id="stAvgLoss">--</div></div>
+      <div class="stat-card"><h3>Open Positions</h3><div class="val" id="stOpen">--</div></div>
+    </div>
+
+    <!-- Services -->
+    <div class="services-grid" id="servicesGrid"></div>
+
+    <!-- Kronos -->
+    <div class="panel" id="kronosPanel">
+      <h2>Kronos Forecast</h2>
+      <div id="kronosContent" style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;">Loading...</div>
+    </div>
+
+    <!-- Open Positions -->
+    <div class="panel">
+      <h2>Open Positions</h2>
+      <table>
+        <thead><tr><th>#</th><th>Time</th><th>Side</th><th>Instrument</th><th>Entry</th><th>SL</th><th>Target</th><th>P&L (pts)</th><th>Score</th></tr></thead>
+        <tbody id="positionsBody"><tr><td colspan="9" style="text-align:center;color:var(--muted)">No open positions</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- Recent Signals -->
+    <div class="panel">
+      <h2>Recent Signals</h2>
+      <table>
+        <thead><tr><th>#</th><th>Time</th><th>Source</th><th>Signal</th><th>Instrument</th><th>LTP</th><th>Score</th></tr></thead>
+        <tbody id="signalsBody"><tr><td colspan="7" style="text-align:center;color:var(--muted)">No signals</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="footer">Algo Fyers Control Panel &middot; <span id="healthTime"></span></div>
+  </div>
+
+  <script>
+    const API = '';
+    let refreshTimer;
+
+    // ── API Helpers ────────────────────────────────────────────────────────
+    // Include credentials so the browser sends the HTTP Basic Auth header
+    // that the user entered when prompted by the 401 challenge.
+    async function api(path, opts = {}) {
+      try {
+        const r = await fetch(API + path, { headers: { 'Accept': 'application/json' }, credentials: 'include', ...opts });
+        if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+        return await r.json();
+      } catch (e) {
+        console.error('API error:', path, e);
+        return null;
+      }
+    }
+
+    // ── Services ───────────────────────────────────────────────────────────
+    async function loadServices() {
+      const data = await api('/api/services');
+      if (!data) return;
+      const grid = document.getElementById('servicesGrid');
+      grid.innerHTML = '';
+      for (const svc of data.services) {
+        const running = svc.running;
+        const dotCls = running ? 'dot-green' : 'dot-gray';
+        const statusText = running ? `Running (PID ${svc.pid})` : 'Stopped';
+        const uptime = running ? formatUptime(svc.uptime_seconds) : '--';
+        grid.innerHTML += `
+          <div class="svc-card">
+            <h3><span class="dot ${dotCls}"></span> ${svc.name}</h3>
+            <div class="desc">${SERVICES[svc.id]?.desc || ''}</div>
+            <div class="meta">
+              <span>Status: <b>${statusText}</b></span>
+              <span>Uptime: ${uptime}</span>
+            </div>
+            <div class="actions">
+              ${running
+                ? `<button class="btn btn-red btn-sm" onclick="stopSvc('${svc.id}')">Stop</button>
+                   <button class="btn btn-amber btn-sm" onclick="restartSvc('${svc.id}')">Restart</button>`
+                : `<button class="btn btn-green btn-sm" onclick="startSvc('${svc.id}')">Start</button>`
+              }
+              <button class="btn btn-blue btn-sm" onclick="showLog('${svc.id}')">Log</button>
+            </div>
+            <div class="log-box" id="log-${svc.id}" style="display:none;"></div>
+          </div>`;
+      }
+    }
+
+    const SERVICES = {
+      option_chain_cache: { desc: 'Caches option chain + futures OI for fast lookups' },
+      obv_optionchain: { desc: 'OBV-based scanner for divergence signals' },
+      websocket_orderflow: { desc: 'WebSocket order flow scanner (primary)' },
+    };
+
+    async function startSvc(id) {
+      await api(`/api/services/${id}/start`, { method: 'POST' });
+      setTimeout(refreshAll, 2000);
+    }
+    async function stopSvc(id) {
+      await api(`/api/services/${id}/stop`, { method: 'POST' });
+      setTimeout(refreshAll, 1500);
+    }
+    async function restartSvc(id) {
+      await api(`/api/services/${id}/restart`, { method: 'POST' });
+      setTimeout(refreshAll, 2500);
+    }
+    async function startAll() {
+      await api('/api/services/start-all', { method: 'POST' });
+      setTimeout(refreshAll, 4000);
+    }
+    async function stopAll() {
+      await api('/api/services/stop-all', { method: 'POST' });
+      setTimeout(refreshAll, 2000);
+    }
+
+    async function showLog(id) {
+      const el = document.getElementById(`log-${id}`);
+      if (!el) return;
+      const isHidden = el.style.display === 'none';
+      el.style.display = isHidden ? 'block' : 'none';
+      if (isHidden) {
+        const data = await api(`/api/services/${id}/log?lines=80`);
+        if (data) el.textContent = (data.log || []).join('\n') || 'No log output yet.';
+        el.scrollTop = el.scrollHeight;
+      }
+    }
+
+    // ── Auth ────────────────────────────────────────────────────────────────
+    async function loadAuth() {
+      const data = await api('/api/auth/fyers');
+      const badge = document.getElementById('authBadge');
+      if (!data) { badge.innerHTML = '<span class="dot dot-gray"></span> Fyers: Error'; return; }
+      if (data.authenticated) {
+        badge.innerHTML = `<span class="dot dot-green"></span> Fyers: Authenticated`;
+      } else {
+        badge.innerHTML = `<span class="dot dot-red"></span> Fyers: Not authenticated`;
+      }
+    }
+
+    // ── Stats ───────────────────────────────────────────────────────────────
+    async function loadStats() {
+      const data = await api('/api/dashboard/stats');
+      if (!data || data.error) return;
+      const fmt = (n, pre='') => n != null ? pre + n.toLocaleString('en-IN', {maximumFractionDigits:0}) : '--';
+      document.getElementById('stTotal').textContent = data.closed_trades ?? '--';
+      const pnl = data.total_pnl ?? 0;
+      const pnlEl = document.getElementById('stPnl');
+      pnlEl.textContent = fmt(pnl, pnl >= 0 ? '+₹' : '₹');
+      pnlEl.className = 'val ' + (pnl >= 0 ? 'up' : 'dn');
+      document.getElementById('stWinRate').textContent = (data.win_rate ?? 0) + '%';
+      document.getElementById('stPF').textContent = data.profit_factor ?? '--';
+      const avgW = data.avg_win ?? 0;
+      const avgL = data.avg_loss ?? 0;
+      document.getElementById('stAvgWin').textContent = fmt(avgW, '+₹');
+      document.getElementById('stAvgLoss').textContent = fmt(avgL, '₹');
+      document.getElementById('stOpen').textContent = data.open_positions ?? 0;
+    }
+
+    // ── Kronos ──────────────────────────────────────────────────────────────
+    async function loadKronos() {
+      const data = await api('/api/dashboard/kronos');
+      const badge = document.getElementById('kronosBadge');
+      const content = document.getElementById('kronosContent');
+      if (!data) {
+        badge.innerHTML = '<span class="dot dot-gray"></span> Kronos: Error';
+        content.textContent = 'Could not load Kronos prediction.';
+        return;
+      }
+      if (!data.available) {
+        badge.innerHTML = `<span class="dot dot-gray"></span> Kronos: ${data.reason || 'N/A'}`;
+        content.textContent = data.reason || 'Kronos model not loaded yet.';
+        return;
+      }
+      const dir = data.direction || 'N/A';
+      const move = data.predicted_move ?? 0;
+      const conf = data.confidence || 'N/A';
+      const sign = move >= 0 ? '+' : '';
+      const color = dir === 'BULLISH' ? 'var(--green)' : dir === 'BEARISH' ? 'var(--red)' : 'var(--muted)';
+      badge.innerHTML = `<span class="dot ${dir === 'BULLISH' ? 'dot-green' : dir === 'BEARISH' ? 'dot-red' : 'dot-gray'}"></span> Kronos: ${dir}`;
+      content.innerHTML = `
+        <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+          <div><span style="color:var(--muted)">Direction:</span> <b style="color:${color}">${dir}</b></div>
+          <div><span style="color:var(--muted)">Predicted Move:</span> <b style="color:${color}">${sign}${move.toFixed(1)} pts</b></div>
+          <div><span style="color:var(--muted)">Confidence:</span> <b>${conf}</b></div>
+          <div><span style="color:var(--muted)">As of:</span> ${data.timestamp || '--'}</div>
+        </div>`;
+    }
+
+    // ── Positions ────────────────────────────────────────────────────────────
+    async function loadPositions() {
+      const data = await api('/api/dashboard/portfolio');
+      const tbody = document.getElementById('positionsBody');
+      if (!data || !data.positions || data.positions.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:var(--muted)">No open positions</td></tr>';
+        return;
+      }
+      tbody.innerHTML = data.positions.map(p => {
+        const sideColor = p.side === 'BUY' ? 'up' : 'dn';
+        const pnlColor = (p.pnl_points || 0) >= 0 ? 'up' : 'dn';
+        return `<tr>
+          <td>${p.id}</td><td>${(p.entry_time || '').slice(11,16)}</td>
+          <td class="${sideColor}">${p.side}</td><td>${p.instrument || '--'}</td>
+          <td>${p.entry_price ?? '--'}</td><td>${p.sl_price ?? '--'}</td><td>${p.target_price ?? '--'}</td>
+          <td class="${pnlColor}">${p.pnl_points ?? '--'}</td><td>${p.checklist_score ?? '--'}/5</td>
+        </tr>`;
+      }).join('');
+    }
+
+    // ── Signals ─────────────────────────────────────────────────────────────
+    async function loadSignals() {
+      const data = await api('/api/dashboard/signals');
+      const tbody = document.getElementById('signalsBody');
+      if (!data || !data.signals || data.signals.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--muted)">No signals</td></tr>';
+        return;
+      }
+      tbody.innerHTML = data.signals.map(s => {
+        const sideColor = (s.signal || '').toUpperCase().includes('BUY') ? 'up' : 'dn';
+        return `<tr>
+          <td>${s.id}</td><td>${(s.logged_at || '').slice(11,16)}</td>
+          <td>${s.source || '--'}</td><td class="${sideColor}">${s.signal || '--'}</td>
+          <td>${s.instrument || '--'}</td><td>${s.ltp || '--'}</td><td>${s.checklist_score ?? '--'}/5</td>
+        </tr>`;
+      }).join('');
+    }
+
+    // ── Refresh ─────────────────────────────────────────────────────────────
+    async function refreshAll() {
+      document.getElementById('lastRefresh').textContent = 'Refreshing...';
+      await Promise.all([
+        loadServices(),
+        loadAuth(),
+        loadStats(),
+        loadKronos(),
+        loadPositions(),
+        loadSignals(),
+      ]);
+      document.getElementById('lastRefresh').textContent = 'Updated ' + new Date().toLocaleTimeString();
+      document.getElementById('healthTime').textContent = new Date().toLocaleString();
+    }
+
+    function formatUptime(secs) {
+      if (!secs || secs <= 0) return '--';
+      const h = Math.floor(secs / 3600);
+      const m = Math.floor((secs % 3600) / 60);
+      const s = Math.floor(secs % 60);
+      if (h > 0) return `${h}h ${m}m`;
+      if (m > 0) return `${m}m ${s}s`;
+      return `${s}s`;
+    }
+
+    // ── Init ────────────────────────────────────────────────────────────────
+    refreshAll();
+    refreshTimer = setInterval(refreshAll, 30000); // Auto-refresh every 30s
+  </script>
+</body>
+</html>
